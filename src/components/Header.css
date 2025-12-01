@@ -1,0 +1,31 @@
+.header {
+  background-color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+  color: #444;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.date-time {
+  text-align: right;
+}
+
+.date {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.time {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #6c757d;
+}
