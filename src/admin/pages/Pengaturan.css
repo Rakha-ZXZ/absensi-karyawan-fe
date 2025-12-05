@@ -1,0 +1,101 @@
+.pengaturan-container {
+  padding: 2rem;
+  background-color: #f4f6f9;
+  min-height: 100vh; /* Menggunakan min-height agar konten tidak terpotong */
+}
+
+/* Menggunakan kembali style umum dari file lain */
+.pengaturan-container .page-header {
+  margin-bottom: 2rem;
+}
+
+.pengaturan-container .page-header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.pengaturan-container .page-header p {
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.settings-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.settings-card .card-title {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.form-group {
+  margin-bottom: 1.75rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: #596275;
+}
+
+.form-input,
+input[type="time"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dfe4ea;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Penting agar padding tidak menambah lebar */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus,
+input[type="time"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.user-info-display {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dfe4ea;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #f8f9fa; /* Warna abu-abu muda untuk indikasi read-only */
+  color: #596275;
+  font-weight: 500;
+}
+
+.submit-area {
+  margin-top: 2.5rem;
+  text-align: right;
+}
+
+.save-btn {
+  padding: 0.8rem 2rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+  background-color: #2980b9;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './AttendanceForm.css'
 const AttendanceForm = ({ onSubmit }) => {
   const [attendanceType, setAttendanceType] = useState('masuk');
   const [keterangan, setKeterangan] = useState('');
@@ -48,15 +48,6 @@ const AttendanceForm = ({ onSubmit }) => {
           <label className="radio-label">
             <input
               type="radio"
-              value="pulang"
-              checked={attendanceType === 'pulang'}
-              onChange={(e) => setAttendanceType(e.target.value)}
-            />
-            Pulang
-          </label>
-          <label className="radio-label">
-            <input
-              type="radio"
               value="cuti"
               checked={attendanceType === 'cuti'}
               onChange={(e) => setAttendanceType(e.target.value)}
@@ -83,8 +74,7 @@ const AttendanceForm = ({ onSubmit }) => {
       </div>
       
       <button type="submit" className="btn btn-primary">
-        {attendanceType === 'masuk' ? '🕐 Catat Kehadiran' : 
-         attendanceType === 'pulang' ? '🚪 Catat Kepulangan' : '📝 Ajukan Cuti'}
+        {attendanceType === 'masuk' ? '🕐 Catat Kehadiran' : '📝 Ajukan Cuti'}
       </button>
     </form>
   );

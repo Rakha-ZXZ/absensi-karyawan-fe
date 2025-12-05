@@ -1,4 +1,5 @@
 import React from 'react';
+import './gaji.css';
 
 const Gaji = ({ payrollData, attendanceData }) => {
   // Hitung jumlah hari kerja

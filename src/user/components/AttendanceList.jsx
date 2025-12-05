@@ -1,6 +1,6 @@
 import React from 'react';
-
-const AttendanceList = ({ attendanceData, onCheckout }) => {
+import './AttendanceList.css'
+const AttendanceList = ({ attendanceData, isLoading }) => {
   // Fungsi untuk menampilkan status dengan badge yang sesuai
   const getStatusBadge = (status) => {
     switch(status) {
@@ -21,11 +21,17 @@ const AttendanceList = ({ attendanceData, onCheckout }) => {
     return new Date(dateString).toLocaleDateString('id-ID', options);
   };
 
+  // Fungsi untuk memformat waktu
+  const formatTime = (dateString) => {
+    if (!dateString) return <span className="text-muted">-</span>;
+    return new Date(dateString).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+  };
+
   return (
     <div className="attendance-list">
-      {attendanceData.length === 0 ? (
+      {isLoading ? (
         <div className="no-data">
-          <p>Belum ada data absensi</p>
+          <p>Memuat riwayat absensi...</p>
         </div>
       ) : (
         <table className="table">
@@ -35,42 +41,25 @@ const AttendanceList = ({ attendanceData, onCheckout }) => {
               <th>Jam Masuk</th>
               <th>Jam Pulang</th>
               <th>Status</th>
-              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
-            {attendanceData.map((attendance) => (
-              <tr key={attendance.id}>
-                <td>{formatDate(attendance.tanggal)}</td>
-                <td>
-                  <span className="time-value">{attendance.jamMasuk}</span>
-                </td>
-                <td>
-                  {attendance.jamPulang ? (
-                    <span className="time-value">{attendance.jamPulang}</span>
-                  ) : (
-                    <span className="text-muted">-</span>
-                  )}
-                </td>
-                <td>{getStatusBadge(attendance.status)}</td>
-                <td>
-                  {!attendance.jamPulang && attendance.jamMasuk && (
-                    <button 
-                      className="btn btn-secondary btn-sm"
-                      onClick={() => onCheckout(attendance.id)}
-                      style={{ padding: '5px 10px', fontSize: '0.85rem' }}
-                    >
-                      Check-out
-                    </button>
-                  )}
-                  {attendance.jamPulang && (
-                    <span className="text-muted" style={{ fontSize: '0.85rem' }}>
-                      Selesai
-                    </span>
-                  )}
-                </td>
-              </tr>
-            ))}
+            {attendanceData.length > 0 ? (
+              attendanceData.map((attendance) => (
+                <tr key={attendance._id}>
+                  <td>{formatDate(attendance.tanggal)}</td>
+                  <td>
+                    <span className="time-value">{formatTime(attendance.jamMasuk)}</span>
+                  </td>
+                  <td>
+                    <span className="time-value">{formatTime(attendance.jamPulang)}</span>
+                  </td>
+                  <td>{getStatusBadge(attendance.status)}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td colSpan="4" className="no-data-row">Belum ada riwayat absensi.</td></tr>
+            )}
           </tbody>
         </table>
       )}
@@ -101,6 +90,11 @@ const AttendanceList = ({ attendanceData, onCheckout }) => {
         .btn-sm {
           padding: 5px 10px;
           font-size: 0.85rem;
+        }
+
+        .no-data-row {
+          text-align: center;
+          padding: 20px;
         }
       `}</style>
     </div>
