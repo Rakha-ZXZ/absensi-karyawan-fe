@@ -3,7 +3,7 @@ import './ChangePasswordModal.css'; // Style khusus untuk modal ini
 import '../pages/Absensi.css'; // Menggunakan style dasar modal dari Absensi.css
 
 const isLocalDevelopment = import.meta.env.DEV;
-const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
+const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
 const ChangePasswordModal = ({ isOpen, onClose }) => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -50,7 +50,7 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/employee/change-password`, {
+      const response = await fetch(`${API_BASE_URL}api/employee/change-password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

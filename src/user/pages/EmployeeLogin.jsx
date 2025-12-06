@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './EmployeeLogin.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
 const EmployeeLogin = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ const EmployeeLogin = () => {
     console.log('Mencoba login dengan:', { email, password });
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/employee/login`, {
+      const response = await fetch(`${API_BASE_URL}api/employee/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),

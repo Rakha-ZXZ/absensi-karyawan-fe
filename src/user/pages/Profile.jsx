@@ -4,7 +4,7 @@ import './Absensi.css';
 import ChangePasswordModal from '../components/ChangePasswordModal';
 
 const isLocalDevelopment = import.meta.env.DEV;
-const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
+const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
 const Profile = () => {
  
@@ -19,7 +19,7 @@ const Profile = () => {
       try {
         setLoading(true);
         // Menggunakan fetch API untuk mengambil data profil
-        const response = await fetch(`${API_BASE_URL}/api/employee/profile`, {
+        const response = await fetch(`${API_BASE_URL}api/employee/profile`, {
           // 'credentials: include' penting untuk mengirim cookie otentikasi ke backend
           credentials: 'include',
         });
