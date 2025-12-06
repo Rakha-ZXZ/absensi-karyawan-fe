@@ -1,87 +1,173 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './gaji.css';
 
-const Gaji = ({ payrollData, attendanceData }) => {
-  // Hitung jumlah hari kerja
-  const hariKerja = attendanceData.filter(a => a.status === 'Hadir' || a.status === 'Terlambat').length;
-  
-  // Hitung gaji per hari
-  const gajiPerHari = payrollData.totalGaji / 30; // Asumsi 30 hari dalam sebulan
+/**
+ * Fungsi untuk memanggil API backend dan mengambil jumlah hari kerja yang dibayar.
+ * @returns {Promise<Object>} Promise yang akan resolve dengan data dari API.
+ */
+const fetchPayableDaysCountFromAPI = async () => {
+  const response = await fetch('/api/attendance/payable-days-count', {
+    // credentials: 'include' memastikan browser mengirim cookie
+    // yang terkait dengan domain backend, bahkan saat melakukan cross-origin request.
+    credentials: 'include', 
+  });
+
+  if (!response.ok) {
+    // Jika respons dari server tidak OK (misal: 401, 403, 500)
+    throw new Error('Gagal mengambil data hari kerja dari server.');
+  }
+
+  return response.json(); // Mengembalikan data JSON dari respons
+};
+
+const Gaji = ({ payrollData }) => {
+  const [payableDays, setPayableDays] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Menggunakan asumsi 30 hari kalender untuk perhitungan prorata harian
+  const HARI_PEMBAGI = 30;
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchPayableDaysCountFromAPI()
+      .then(data => {
+        setPayableDays(data.payableDaysCount);
+        setError(null); // Hapus error jika berhasil
+      })
+      .catch(err => {
+        console.error("Error fetching payable days:", err.message);
+        setError(err.message); // Simpan pesan error untuk ditampilkan
+      })
+      .finally(() => setIsLoading(false)); // Selalu set loading ke false setelah selesai
+  }, []); // Dependency array kosong agar hanya berjalan sekali saat komponen dimuat
+
+  // Membuat judul bulan dan tahun menjadi dinamis
+  const bulanSekarang = new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+
+  // Menghitung nilai harian untuk setiap komponen
+  const gajiPokokHarian = payrollData.gajiPokok / HARI_PEMBAGI;
+  const tunjanganJabatanHarian = payrollData.tunjanganJabatan / HARI_PEMBAGI;
+  const tunjanganTransportHarian = payrollData.tunjanganTransport / HARI_PEMBAGI;
+  const tunjanganMakanHarian = payrollData.tunjanganMakan / HARI_PEMBAGI;
+
+  // Menghitung total estimasi pendapatan harian
+  const totalPendapatanHarian = gajiPokokHarian + tunjanganJabatanHarian + tunjanganTransportHarian + tunjanganMakanHarian;
+
+  // Menghitung total gaji yang telah terkumpul berdasarkan kehadiran
+  const gajiTerkumpul = totalPendapatanHarian * payableDays;
+
+  // Data mock untuk rekap gaji bulanan (akan diganti dengan data API di masa depan)
+  const monthlyRecapData = [
+    {
+      bulan: 'November 2023',
+      gajiPokok: 5000000,
+      tunjangan: 2850000,
+      potongan: 0,
+      total: 7850000,
+      status: 'Dibayar'
+    },
+    {
+      bulan: 'Oktober 2023',
+      gajiPokok: 5000000,
+      tunjangan: 2850000,
+      potongan: 150000,
+      total: 7700000,
+      status: 'Dibayar'
+    },
+    {
+      bulan: 'September 2023',
+      gajiPokok: 5000000,
+      tunjangan: 2850000,
+      potongan: 0,
+      total: 7850000,
+      status: 'Dibayar'
+    },
+    // Tambahkan data bulan sebelumnya di sini
+  ];
   
   return (
     <div>
-      <h1 className="page-title">Informasi Gaji & Tunjangan</h1>
+      <h1 className="page-title">Estimasi Pendapatan Harian</h1>
       
       <div className="card">
-        <h2 className="card-title">Detail Gaji Bulan Oktober 2023</h2>
-        
+        <h2 className="card-title">Rincian Pendapatan per Hari Kerja</h2>
+          
         <div className="payroll-item">
-          <span>Gaji Pokok:</span>
-          <span>Rp {payrollData.gajiPokok.toLocaleString('id-ID')}</span>
+          <span>Gaji Pokok Harian:</span>
+          <span>Rp {gajiPokokHarian.toLocaleString('id-ID', { maximumFractionDigits: 0 })}</span>
         </div>
         
         <div className="payroll-item">
-          <span>Tunjangan Jabatan:</span>
-          <span>Rp {payrollData.tunjanganJabatan.toLocaleString('id-ID')}</span>
+          <span>Tunjangan Jabatan Harian:</span>
+          <span>Rp {tunjanganJabatanHarian.toLocaleString('id-ID', { maximumFractionDigits: 0 })}</span>
         </div>
         
         <div className="payroll-item">
-          <span>Tunjangan Transport:</span>
-          <span>Rp {payrollData.tunjanganTransport.toLocaleString('id-ID')}</span>
+          <span>Tunjangan Transport Harian:</span>
+          <span>Rp {tunjanganTransportHarian.toLocaleString('id-ID', { maximumFractionDigits: 0 })}</span>
         </div>
         
         <div className="payroll-item">
-          <span>Tunjangan Makan:</span>
-          <span>Rp {payrollData.tunjanganMakan.toLocaleString('id-ID')}</span>
-        </div>
-        
-        <div className="payroll-item">
-          <span>Bonus Kinerja:</span>
-          <span>Rp {payrollData.bonus.toLocaleString('id-ID')}</span>
-        </div>
-        
-        <div className="payroll-item">
-          <span>Potongan (jika ada):</span>
-          <span style={{color: '#dc3545'}}>- Rp {payrollData.potongan.toLocaleString('id-ID')}</span>
+          <span>Tunjangan Makan Harian:</span>
+          <span>Rp {tunjanganMakanHarian.toLocaleString('id-ID', { maximumFractionDigits: 0 })}</span>
         </div>
         
         <div className="payroll-total">
-          <span>Total Gaji Bersih:</span>
-          <span>Rp {payrollData.totalGaji.toLocaleString('id-ID')}</span>
+          <span>Total Estimasi Pendapatan Harian:</span>
+          <span>Rp {totalPendapatanHarian.toLocaleString('id-ID', { maximumFractionDigits: 0 })}</span>
         </div>
-      </div>
-      
-      <div className="card">
-        <h2 className="card-title">Perhitungan Berdasarkan Kehadiran</h2>
-        
-        <div className="payroll-item">
-          <span>Total Hari Kerja (Bulan Ini):</span>
-          <span>{hariKerja} hari</span>
-        </div>
-        
-        <div className="payroll-item">
-          <span>Gaji per Hari:</span>
-          <span>Rp {gajiPerHari.toLocaleString('id-ID', {maximumFractionDigits: 0})}</span>
-        </div>
-        
-        <div className="payroll-item">
-          <span>Total Gaji berdasarkan Kehadiran:</span>
-          <span>Rp {(gajiPerHari * hariKerja).toLocaleString('id-ID', {maximumFractionDigits: 0})}</span>
-        </div>
-        
-        <div style={{marginTop: '20px', padding: '15px', backgroundColor: '#f8f9fa', borderRadius: '5px'}}>
-          <p style={{marginBottom: '10px', color: '#555'}}>
-            <strong>Keterangan:</strong> Perhitungan di atas berdasarkan asumsi 30 hari kerja dalam sebulan. 
-            Tunjangan tetap dibayar penuh selama karyawan memiliki status aktif.
-          </p>
-          <p style={{color: '#777', fontSize: '0.9rem'}}>
-            Gaji akan ditransfer ke rekening yang terdaftar pada tanggal 28 setiap bulan.
+
+        <div style={{marginTop: '20px', padding: '15px', backgroundColor: '#f8f9fa', borderRadius: '5px', fontSize: '0.9rem'}}>
+          <p style={{margin: 0, color: '#555'}}>
+            <strong>Catatan:</strong> Angka di atas adalah estimasi pendapatan harian, dihitung dengan membagi setiap komponen gaji bulanan dengan {HARI_PEMBAGI} hari.
           </p>
         </div>
       </div>
-      
+
       <div className="card">
-        <h2 className="card-title">Riwayat Pembayaran</h2>
+        <h2 className="card-title">Akumulasi Gaji Bulan {bulanSekarang}</h2>
+
+        <div className="payroll-item">
+          <span>Total Hari Kerja:</span>
+          {error ? (
+            <span style={{ color: 'red' }}>Gagal memuat</span>
+          ) : (
+            <span>
+              {isLoading ? 'Menghitung...' : `${payableDays} Hari`}
+            </span>
+          )}
+        </div>
+
+        <div className="payroll-total">
+          <span>Estimasi Gaji Terkumpul:</span>
+          {error ? (
+            <span style={{ color: 'red' }}>Gagal menghitung</span>
+          ) : (
+            <span>
+              {isLoading ? 'Menghitung...' : `Rp ${gajiTerkumpul.toLocaleString('id-ID', { maximumFractionDigits: 0 })}`}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Kartu Penjelasan */}
+      <div className="card explanation-card">
+        <h3 className="explanation-title">
+          <span className="icon">💡</span> Memahami Perhitungan Gaji Anda
+        </h3>
+        <p className="explanation-text">
+          <strong>Estimasi Gaji Terkumpul</strong> adalah proyeksi pendapatan berdasarkan total hari Anda diabsen (termasuk Hadir, Terlambat, Cuti, Sakit, dan Izin). Angka ini berguna untuk melihat progres Anda.
+        </p>
+        <p className="explanation-text">
+          <strong>Rekap Gaji Bulanan</strong> adalah jumlah **gaji final dan tetap** yang Anda terima. Angka ini sudah mencakup pembayaran untuk seluruh hari dalam sebulan, termasuk hari kerja dan hari libur (akhir pekan & libur nasional), sesuai dengan kontrak kerja Anda.
+        </p>
+      </div>
+
+
+      {/* Rekap Gaji Bulanan */}
+      <div className="card">
+        <h2 className="card-title">Rekap Gaji Bulanan</h2>
         <table className="table">
           <thead>
             <tr>
@@ -89,35 +175,29 @@ const Gaji = ({ payrollData, attendanceData }) => {
               <th>Gaji Pokok</th>
               <th>Tunjangan</th>
               <th>Potongan</th>
-              <th>Total</th>
+              <th>Total Bersih</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>September 2023</td>
-              <td>Rp 5.000.000</td>
-              <td>Rp 2.850.000</td>
-              <td>Rp 0</td>
-              <td>Rp 7.850.000</td>
-              <td><span className="status-hadir">Dibayar</span></td>
-            </tr>
-            <tr>
-              <td>Agustus 2023</td>
-              <td>Rp 5.000.000</td>
-              <td>Rp 2.850.000</td>
-              <td>Rp 150.000</td>
-              <td>Rp 7.700.000</td>
-              <td><span className="status-hadir">Dibayar</span></td>
-            </tr>
-            <tr>
-              <td>Juli 2023</td>
-              <td>Rp 5.000.000</td>
-              <td>Rp 2.850.000</td>
-              <td>Rp 0</td>
-              <td>Rp 7.850.000</td>
-              <td><span className="status-hadir">Dibayar</span></td>
-            </tr>
+            {monthlyRecapData.map((data, index) => (
+              <tr key={index}>
+                <td>{data.bulan}</td>
+                <td>Rp {data.gajiPokok.toLocaleString('id-ID')}</td>
+                <td>Rp {data.tunjangan.toLocaleString('id-ID')}</td>
+                <td>
+                  {data.potongan > 0 ? 
+                    <span style={{color: '#dc3545'}}>- Rp {data.potongan.toLocaleString('id-ID')}</span> : 
+                    'Rp 0'
+                  }
+                </td>
+                <td>Rp {data.total.toLocaleString('id-ID')}</td>
+                <td><span className="status-hadir">{data.status}</span></td> {/* Menggunakan status-hadir sebagai badge hijau */}
+              </tr>
+            ))}
+            {monthlyRecapData.length === 0 && (
+              <tr><td colSpan="6" className="no-data-row">Belum ada riwayat gaji bulanan.</td></tr>
+            )}
           </tbody>
         </table>
       </div>

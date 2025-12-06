@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AttendanceForm from '../components/AttendanceForm';
 import AttendanceList from '../components/AttendanceList';
 import './Absensi.css';
+
 const Absensi = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -251,7 +252,7 @@ const Absensi = () => {
               <span className="stat-value">{attendanceHistory.length}</span>
             </div>
             <div className="stat-item">
-              <span className="stat-label">Hadir:</span>
+              <span className="stat-label">Tepat Waktu:</span>
               <span className="stat-value">{attendanceHistory.filter(a => a.status === 'Hadir').length}</span>
             </div>
             <div className="stat-item">
@@ -268,5 +269,27 @@ const Absensi = () => {
     </div>
   );
 };
+
+const styles = `
+.info-box-late {
+  display: flex;
+  align-items: flex-start;
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #5c3a00;
+}
+.info-box-late .info-icon {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+.info-box-late p {
+  margin: 0;
+  line-height: 1.5;
+}
+`;
 
 export default Absensi;

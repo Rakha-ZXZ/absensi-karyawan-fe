@@ -57,6 +57,14 @@ const AttendanceForm = ({ onSubmit }) => {
         </div>
       </div>
       
+      {/* Info Box untuk batas waktu absensi */}
+      {attendanceType === 'masuk' && (
+        <div className="info-box-late">
+          <span className="info-icon">⚠️</span>
+          <p>Batas waktu absensi adalah pukul <strong>08:30</strong>. Melewati batas waktu akan dicatat sebagai <strong>Terlambat</strong>.</p>
+        </div>
+      )}
+
       <div className="form-group">
         <label className="form-label">Keterangan {attendanceType === 'cuti' && '(wajib diisi)'}</label>
         <textarea 
