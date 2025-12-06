@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './gaji.css';
+import './Gaji.css';
 
 /**
  * Fungsi untuk memanggil API backend dan mengambil jumlah hari kerja yang dibayar.
