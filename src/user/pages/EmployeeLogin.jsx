@@ -45,7 +45,7 @@ const EmployeeLogin = () => {
       navigate('/dashboard');
 
     } catch (err) {
-      console.error('Login gagal (simulasi):', err);
+      console.error('Login gagal (simulasi):', err);      
       setError('Email atau password salah. Silakan coba lagi.');
     }
   };
