@@ -3,6 +3,9 @@ import AttendanceForm from '../components/AttendanceForm';
 import AttendanceList from '../components/AttendanceList';
 import './Absensi.css';
 
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
+
 const Absensi = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -17,7 +20,7 @@ const Absensi = () => {
   useEffect(() => {
     const checkStatus = async () => {
       try {
-        const response = await fetch('/api/attendance/status');
+        const response = await fetch(`${API_BASE_URL}/api/attendance/status`);
         if (!response.ok) {
           // Tidak melempar error jika 401/403, biarkan UI menampilkan form login
           if (response.status === 401 || response.status === 403) return;
@@ -42,7 +45,7 @@ const Absensi = () => {
     const fetchHistory = async () => {
       setIsHistoryLoading(true);
       try {
-        const response = await fetch('/api/attendance/my-history');
+        const response = await fetch(`${API_BASE_URL}/api/attendance/my-history`);
         if (!response.ok) {
           throw new Error('Gagal memuat riwayat absensi.');
         }
@@ -76,7 +79,7 @@ const Absensi = () => {
           const { latitude, longitude } = position.coords;
 
           try {
-            const response = await fetch('/api/attendance/check-in', {
+            const response = await fetch(`${API_BASE_URL}/api/attendance/check-in`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ latitude, longitude }),
@@ -129,7 +132,7 @@ const Absensi = () => {
       async (position) => {
         const { latitude, longitude } = position.coords;
         try {
-          const response = await fetch('/api/attendance/check-out', {
+          const response = await fetch(`${API_BASE_URL}/api/attendance/check-out`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ latitude, longitude }),
@@ -270,26 +273,6 @@ const Absensi = () => {
   );
 };
 
-const styles = `
-.info-box-late {
-  display: flex;
-  align-items: flex-start;
-  background-color: #fffbe6;
-  border: 1px solid #ffe58f;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-bottom: 20px;
-  font-size: 0.9rem;
-  color: #5c3a00;
-}
-.info-box-late .info-icon {
-  margin-right: 12px;
-  font-size: 1.2rem;
-}
-.info-box-late p {
-  margin: 0;
-  line-height: 1.5;
-}
-`;
+
 
 export default Absensi;

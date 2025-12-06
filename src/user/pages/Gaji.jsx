@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Gaji.css';
 
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
 /**
  * Fungsi untuk memanggil API backend dan mengambil jumlah hari kerja yang dibayar.
  * @returns {Promise<Object>} Promise yang akan resolve dengan data dari API.
  */
 const fetchPayableDaysCountFromAPI = async () => {
-  const response = await fetch('/api/attendance/payable-days-count', {
+  const response = await fetch(`${API_BASE_URL}/api/attendance/payable-days-count`, {
     // credentials: 'include' memastikan browser mengirim cookie
     // yang terkait dengan domain backend, bahkan saat melakukan cross-origin request.
     credentials: 'include', 

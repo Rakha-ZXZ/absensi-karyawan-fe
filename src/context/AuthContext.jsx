@@ -2,6 +2,9 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const AuthContext = createContext();
 
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
+
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
@@ -13,8 +16,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); 
   
   // URL API: Asumsi backend Anda berjalan di domain yang sama atau menggunakan proxy
-  const CHECK_AUTH_URL = '/api/auth/check-status'; 
-  const LOGOUT_URL = '/api/auth/logout';
+  const CHECK_AUTH_URL = `${API_BASE_URL}/api/auth/check-status`; 
+  const LOGOUT_URL = `${API_BASE_URL}/api/auth/logout`;
 
   /**
    * Fungsi untuk mengecek status otentikasi ke server

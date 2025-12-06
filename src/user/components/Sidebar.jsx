@@ -3,6 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 import { useAuth } from '../../context/AuthContext'; // Import useAuth
 import { useEffect,useState } from 'react';
+
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
+
 const AdminSidebar = () => {
   const location = useLocation();
   const { handleLogout } = useAuth(); // Ambil fungsi logout dari context
@@ -26,7 +30,7 @@ const AdminSidebar = () => {
       const fetchProfileData = async () => {
         try {         
           // Menggunakan fetch API untuk mengambil data profil
-          const response = await fetch('/api/employee/profile', {
+          const response = await fetch(`${API_BASE_URL}/api/employee/profile`, {
             // 'credentials: include' penting untuk mengirim cookie otentikasi ke backend
             credentials: 'include',
           });

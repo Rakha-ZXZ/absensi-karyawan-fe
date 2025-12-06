@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
-import './Absensi.css'; // Impor untuk gaya status yang konsisten
-// import { api } from '../../lib/api'; // Tidak lagi digunakan, kita akan pakai fetch
+import './Absensi.css'; 
 import ChangePasswordModal from '../components/ChangePasswordModal';
+
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
 
 const Profile = () => {
  
@@ -17,7 +19,7 @@ const Profile = () => {
       try {
         setLoading(true);
         // Menggunakan fetch API untuk mengambil data profil
-        const response = await fetch('/api/employee/profile', {
+        const response = await fetch(`${API_BASE_URL}/api/employee/profile`, {
           // 'credentials: include' penting untuk mengirim cookie otentikasi ke backend
           credentials: 'include',
         });

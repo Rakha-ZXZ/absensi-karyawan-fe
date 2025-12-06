@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Dashboard.css';
 
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '' : import.meta.env.VITE_API_URL;
+
 const Dashboard = ({ payrollData }) => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [attendanceStats, setAttendanceStats] = useState({
@@ -18,7 +21,7 @@ const Dashboard = ({ payrollData }) => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch('/api/attendance/my-history', {
+        const response = await fetch(`${API_BASE_URL}/api/attendance/my-history`, {
           credentials: 'include', // Mengirim cookie untuk otentikasi
         });
         if (!response.ok) {
@@ -39,7 +42,7 @@ const Dashboard = ({ payrollData }) => {
     const fetchAttendanceStats = async () => {
       setIsStatsLoading(true);
       try {
-        const response = await fetch('/api/attendance/monthly-recap', {
+        const response = await fetch(`${API_BASE_URL}/api/attendance/monthly-recap`, {
           credentials: 'include',
         });
         if (!response.ok) {
