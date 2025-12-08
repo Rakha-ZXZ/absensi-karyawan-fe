@@ -21,6 +21,16 @@ body {
   flex-direction: column;
 }
 
+/* Mendorong konten utama ke kanan saat sidebar admin aktif */
+.main-content.with-admin-sidebar {
+  margin-left: 260px; /* Lebar sidebar admin */
+}
+
+/* Mendorong konten utama ke kanan saat sidebar user aktif */
+.main-content.with-user-sidebar {
+  margin-left: 260px; /* Asumsi lebar sidebar user sama dengan admin */
+}
+
 .content {
   padding: 30px;
   background-color: #f9f9f9;

@@ -5,7 +5,7 @@ import './Dashboard.css';
 const isLocalDevelopment = import.meta.env.DEV;
 const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
-const Dashboard = ({ payrollData }) => {
+const Dashboard = () => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [attendanceStats, setAttendanceStats] = useState({
     Hadir: 0,
@@ -15,6 +15,15 @@ const Dashboard = ({ payrollData }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isStatsLoading, setIsStatsLoading] = useState(true);
+
+  // State untuk data gaji
+  const [salaryData, setSalaryData] = useState({
+    gajiPokok: 0,
+    tunjanganJabatan: 0,
+    tunjanganTransport: 0,
+    tunjanganMakan: 0,
+  });
+  const [isSalaryLoading, setIsSalaryLoading] = useState(true);
 
   useEffect(() => {
     const fetchAttendanceData = async () => {
@@ -63,12 +72,38 @@ const Dashboard = ({ payrollData }) => {
     };
 
     fetchAttendanceStats();
+
+    const fetchSalaryData = async () => {
+      setIsSalaryLoading(true);
+      try {
+        const response = await fetch(`${API_BASE_URL}api/employee/salary-details`, {
+          credentials: 'include',
+        });
+        if (!response.ok) {
+          throw new Error('Gagal mengambil data gaji.');
+        }
+        const data = await response.json();
+        setSalaryData(data);
+      } catch (err) {
+        // Tidak menampilkan error di sini agar tidak mengganggu UI utama
+        console.error("Error fetching salary data:", err);
+      } finally {
+        setIsSalaryLoading(false);
+      }
+    };
+
+    fetchSalaryData();
   }, []); // Array dependensi kosong agar hanya berjalan sekali saat komponen dimuat
 
   // Hitung total hari kerja dari statistik yang sudah diambil
   const totalHariKerja = Object.values(attendanceStats).reduce(
     (sum, count) => sum + count,
     0
+  );
+
+  // Hitung total gaji dari data yang sudah diambil
+  const totalGaji = (
+    (salaryData.gajiPokok || 0) + (salaryData.tunjanganJabatan || 0) + (salaryData.tunjanganTransport || 0) + (salaryData.tunjanganMakan || 0)
   );
 
   return (
@@ -148,23 +183,23 @@ const Dashboard = ({ payrollData }) => {
         <h2 className="card-title">Informasi Gaji Bulan Ini</h2>
         <div className="payroll-item">
           <span>Gaji Pokok:</span>
-          <span>Rp {payrollData.gajiPokok.toLocaleString('id-ID')}</span>
+          <span>{isSalaryLoading ? '...' : `Rp ${salaryData.gajiPokok.toLocaleString('id-ID')}`}</span>
         </div>
         <div className="payroll-item">
           <span>Tunjangan Jabatan:</span>
-          <span>Rp {payrollData.tunjanganJabatan.toLocaleString('id-ID')}</span>
+          <span>{isSalaryLoading ? '...' : `Rp ${salaryData.tunjanganJabatan.toLocaleString('id-ID')}`}</span>
         </div>
         <div className="payroll-item">
           <span>Tunjangan Transport:</span>
-          <span>Rp {payrollData.tunjanganTransport.toLocaleString('id-ID')}</span>
+          <span>{isSalaryLoading ? '...' : `Rp ${salaryData.tunjanganTransport.toLocaleString('id-ID')}`}</span>
         </div>
         <div className="payroll-item">
           <span>Tunjangan Makan:</span>
-          <span>Rp {payrollData.tunjanganMakan.toLocaleString('id-ID')}</span>
+          <span>{isSalaryLoading ? '...' : `Rp ${salaryData.tunjanganMakan.toLocaleString('id-ID')}`}</span>
         </div>
         <div className="payroll-total">
           <span>Total Gaji:</span>
-          <span>Rp {payrollData.totalGaji.toLocaleString('id-ID')}</span>
+          <span>{isSalaryLoading ? '...' : `Rp ${totalGaji.toLocaleString('id-ID')}`}</span>
         </div>
         <div style={{textAlign: 'center', marginTop: '20px'}}>
           <Link to="/gaji" className="btn btn-primary">Detail Lengkap Gaji</Link>

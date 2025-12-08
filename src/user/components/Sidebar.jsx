@@ -7,7 +7,7 @@ import { useEffect,useState } from 'react';
 const isLocalDevelopment = import.meta.env.DEV;
 const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
-const AdminSidebar = () => {
+const Sidebar = () => {
   const location = useLocation();
   const { handleLogout } = useAuth(); // Ambil fungsi logout dari context
   const navigate = useNavigate();
@@ -95,4 +95,4 @@ const AdminSidebar = () => {
   );
 };
 
-export default AdminSidebar;
+export default Sidebar;

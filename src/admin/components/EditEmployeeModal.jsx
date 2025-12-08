@@ -19,6 +19,10 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
     nomorTelepon: '',
     alamat: '',
     status: 'Aktif',
+    gajiPokok: 0,
+    tunjanganJabatan: 0,
+    tunjanganTransport: 0,
+    tunjanganMakan: 0,
   });
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
@@ -34,6 +38,10 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
         nomorTelepon: employeeData.nomorTelepon || '',
         alamat: employeeData.alamat || '',
         status: employeeData.status || 'Aktif',
+        gajiPokok: employeeData.gajiPokok || 0,
+        tunjanganJabatan: employeeData.tunjanganJabatan || 0,
+        tunjanganTransport: employeeData.tunjanganTransport || 0,
+        tunjanganMakan: employeeData.tunjanganMakan || 0,
       });
       setPassword(''); // Selalu kosongkan field password saat modal dibuka
     }
@@ -74,58 +82,77 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
         <form onSubmit={handleSubmit} className="modal-form">
           {error && <p className="error-message">{error}</p>}
           
-          <div className="form-group">
-            <label htmlFor="nama">Nama Lengkap</label>
-            <input type="text" id="nama" name="nama" value={formData.nama} onChange={handleChange} required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password Baru (Opsional)</label>
-            <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Isi untuk mengubah password" />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="jabatan">Jabatan</label>
-            <select id="jabatan" name="jabatan" value={formData.jabatan} onChange={handleChange} required>
-              <option value="">Pilih Jabatan</option>
-              {jabatanEnum.map(jabatan => (
-                <option key={jabatan} value={jabatan}>{jabatan}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="departemen">Departemen</label>
-            <select id="departemen" name="departemen" value={formData.departemen} onChange={handleChange}>
-              <option value="">Pilih Departemen</option>
-              {departemenEnum.map(dept => (
-                <option key={dept} value={dept}>{dept}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="nomorTelepon">Nomor Telepon</label>
-            <input type="tel" id="nomorTelepon" name="nomorTelepon" value={formData.nomorTelepon} onChange={handleChange} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="alamat">Alamat</label>
-            <textarea id="alamat" name="alamat" value={formData.alamat} onChange={handleChange}></textarea>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="status">Status Karyawan</label>
-            <select id="status" name="status" value={formData.status} onChange={handleChange}>
-              <option value="Aktif">Aktif</option>
-              <option value="Tidak Aktif">Tidak Aktif</option>
-              <option value="Cuti">Cuti</option>
-            </select>
+          <div className="form-grid">
+            {/* Kolom Kiri */}
+            <div className="form-column">
+              <div className="form-group">
+                <label htmlFor="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" value={formData.nama} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password Baru (Opsional)</label>
+                <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Isi untuk mengubah password" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="nomorTelepon">Nomor Telepon</label>
+                <input type="tel" id="nomorTelepon" name="nomorTelepon" value={formData.nomorTelepon} onChange={handleChange} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="alamat">Alamat</label>
+                <textarea id="alamat" name="alamat" value={formData.alamat} onChange={handleChange}></textarea>
+              </div>
+            </div>
+            {/* Kolom Kanan */}
+            <div className="form-column">
+              <div className="form-group">
+                <label htmlFor="jabatan">Jabatan</label>
+                <select id="jabatan" name="jabatan" value={formData.jabatan} onChange={handleChange} required>
+                  <option value="">Pilih Jabatan</option>
+                  {jabatanEnum.map(jabatan => (
+                    <option key={jabatan} value={jabatan}>{jabatan}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="departemen">Departemen</label>
+                <select id="departemen" name="departemen" value={formData.departemen} onChange={handleChange}>
+                  <option value="">Pilih Departemen</option>
+                  {departemenEnum.map(dept => (
+                    <option key={dept} value={dept}>{dept}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="status">Status Karyawan</label>
+                <select id="status" name="status" value={formData.status} onChange={handleChange}>
+                  <option value="Aktif">Aktif</option>              
+                  <option value="Cuti">Cuti</option>
+                </select>
+              </div>
+            </div>
+            {/* Kolom Gaji */}
+            <div className="form-column">
+              <div className="form-group">
+                <label htmlFor="gajiPokok">Gaji Pokok</label>
+                <input type="number" id="gajiPokok" name="gajiPokok" value={formData.gajiPokok} onChange={handleChange} min="0" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="tunjanganJabatan">Tunjangan Jabatan</label>
+                <input type="number" id="tunjanganJabatan" name="tunjanganJabatan" value={formData.tunjanganJabatan} onChange={handleChange} min="0" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="tunjanganTransport">Tunjangan Transport</label>
+                <input type="number" id="tunjanganTransport" name="tunjanganTransport" value={formData.tunjanganTransport} onChange={handleChange} min="0" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="tunjanganMakan">Tunjangan Makan</label>
+                <input type="number" id="tunjanganMakan" name="tunjanganMakan" value={formData.tunjanganMakan} onChange={handleChange} min="0" />
+              </div>
+            </div>
           </div>
 
           <div className="modal-footer">

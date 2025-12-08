@@ -77,7 +77,7 @@ const Profile = () => {
               <span className={`status-badge status-${profileData.status.toLowerCase().replace(' ', '-')}`}>
                 {profileData.status}
               </span>
-              <span className="nip-badge">ID: {profileData.employerId || 'N/A'}</span>
+              <span className="nip-badge">ID: {profileData.employeeId || 'N/A'}</span>
               <span className="join-date"> {/* Menggunakan createdAt atau tanggalBergabung dari model */}
                 Bergabung: {new Date(profileData.tanggalMasuk || profileData.createdAt).toLocaleDateString('id-ID', {
                   day: 'numeric',
@@ -116,7 +116,7 @@ const Profile = () => {
               
               <div className="info-item">
                 <span className="info-label">ID</span>
-                <span className="info-value">{profileData.employerId || 'N/A'}</span>
+                <span className="info-value">{profileData.employeeId || 'N/A'}</span>
               </div>
               
               <div className="info-item">

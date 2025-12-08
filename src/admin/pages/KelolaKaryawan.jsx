@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './KelolaKaryawan.css';
 import AddEmployeeModal from '../components/AddEmployeeModal'; // Import modal
 import EditEmployeeModal from '../components/EditEmployeeModal'; // Import modal edit
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
 const KelolaKaryawan = () => {
   // State untuk data dari API
@@ -23,8 +25,9 @@ const KelolaKaryawan = () => {
     setIsLoading(true);
     setApiError(null);
     try {
-      // Ganti dengan endpoint yang benar jika berbeda
-      const response = await fetch('/api/admin/get-employees'); 
+      const response = await fetch(`${API_BASE_URL}api/admin/get-employees`, {
+        credentials: 'include',
+      }); 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Gagal mengambil data karyawan.');
@@ -51,7 +54,7 @@ const KelolaKaryawan = () => {
   // Logika untuk memfilter karyawan berdasarkan input pencarian
   const filteredEmployees = employees.filter(employee => {
     const term = searchTerm.toLowerCase();
-    const employeeId = employee.employerId ? employee.employerId.toLowerCase() : '';
+    const employeeId = employee.employeeId ? employee.employeeId.toLowerCase() : '';
     return (
       employee.nama.toLowerCase().includes(term) ||
       employee.jabatan.toLowerCase().includes(term) ||
@@ -64,13 +67,13 @@ const KelolaKaryawan = () => {
     setStatusMessage('Menyimpan data karyawan...');
     try {
       // Gunakan endpoint POST yang konsisten
-      const response = await fetch('/api/admin/add-employee', {
+      const response = await fetch(`${API_BASE_URL}api/admin/add-employee`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Tambahkan header otorisasi jika diperlukan (misalnya: 'Authorization': `Bearer ${token}`)
         },
         body: JSON.stringify(newEmployeeData),
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -106,17 +109,27 @@ const KelolaKaryawan = () => {
 
   // Fungsi untuk menangani pembaruan data karyawan
   const handleUpdateEmployee = async (employeeId, updatedData) => {
-    setStatusMessage('Memperbarui data karyawan...');
-    const token = localStorage.getItem('token');
+    setStatusMessage('Memperbarui data karyawan...');    
     try {
-      // Asumsi endpoint update adalah /api/admin/update-employee/:id
-      const response = await fetch(`/api/admin/update-employee/${employeeId}`, {
+      // Pastikan field numerik dikirim sebagai angka, bukan string
+      const payload = {
+        ...updatedData,
+        gajiPokok: Number(updatedData.gajiPokok) || 0,
+        tunjanganJabatan: Number(updatedData.tunjanganJabatan) || 0,
+        tunjanganTransport: Number(updatedData.tunjanganTransport) || 0,
+        tunjanganMakan: Number(updatedData.tunjanganMakan) || 0,
+      };
+
+      // Hapus field password dari payload jika kosong
+      if (!payload.password) {
+        delete payload.password;
+      }
+
+      const response = await fetch(`${API_BASE_URL}api/admin/update-employee/${employeeId}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(updatedData),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -153,11 +166,12 @@ const KelolaKaryawan = () => {
     setStatusMessage('Menghapus data karyawan...');
     try {
       // Ganti dengan endpoint DELETE yang sesuai
-      const response = await fetch(`/api/admin/delete-employee/${employeeId}`, {
+      const response = await fetch(`${API_BASE_URL}api/admin/delete-employee/${employeeId}`, {
         method: 'DELETE',
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
         },
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -234,7 +248,7 @@ const KelolaKaryawan = () => {
             ) : filteredEmployees.length > 0 ? (
               filteredEmployees.map(employee => (
                 <tr key={employee._id}>
-                  <td>{employee.employerId}</td>
+                  <td>{employee.employeeId}</td>
                   <td>{employee.nama}</td>
                   <td>{employee.jabatan}</td>
                   <td>

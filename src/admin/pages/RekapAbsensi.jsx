@@ -1,11 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './RekapAbsensi.css';
 
-const RekapAbsensi = ({ allAttendanceData, employeeData }) => {
-  // Jika tidak ada data dari props, gunakan array kosong agar tidak error
-  const attendanceData = allAttendanceData || [];
-  const employees = employeeData || [];
+const isLocalDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isLocalDevelopment ? '/' : import.meta.env.VITE_API_URL;
 
+const RekapAbsensi = () => {
+  // State untuk data dari API
+  const [attendanceData, setAttendanceData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [apiError, setApiError] = useState(null);
+  
   const [filter, setFilter] = useState({
     // Atur default ke bulan dan tahun saat ini
     month: new Date().getMonth() + 1,
@@ -17,36 +21,62 @@ const RekapAbsensi = ({ allAttendanceData, employeeData }) => {
     setFilter(prev => ({ ...prev, [name]: parseInt(value) }));
   };
 
-  const rekapData = useMemo(() => {
-    const filtered = attendanceData.filter(item => {
-      const itemDate = new Date(item.tanggal);
-      return itemDate.getMonth() + 1 === filter.month && itemDate.getFullYear() === filter.year;
-    });
+  // Efek untuk mengambil data dari API setiap kali filter berubah
+  useEffect(() => {
+    const fetchAttendanceByMonth = async () => {
+      setIsLoading(true);
+      setApiError(null);
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(
+          `${API_BASE_URL}api/attendance/by-month?month=${filter.month}&year=${filter.year}`,
+          {
+            headers: { 'Authorization': `Bearer ${token}` }
+          }
+        );
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Gagal mengambil data rekap.');
+        }
+        const data = await response.json();
+        setAttendanceData(data);
+      } catch (err) {
+        setApiError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    const summary = filtered.reduce((acc, curr) => {
-      // Gunakan employeeId sebagai kunci unik
-      const employeeId = curr.employeeId;
-      if (!acc[employeeId]) {
-        // Cari detail karyawan berdasarkan ID
-        const employee = employees.find(e => e.id === employeeId);
-        acc[employeeId] = { 
-          id: employeeId, // Tambahkan ID karyawan ke objek rekap
-          nama: employee ? employee.nama : `ID: ${employeeId}`, // Tampilkan nama, atau ID jika tidak ditemukan
-          jabatan: employee ? employee.jabatan : 'N/A',
-          Hadir: 0, Izin: 0, Sakit: 0, Terlambat: 0, Total: 0 
+    fetchAttendanceByMonth();
+  }, [filter]);
+
+  const rekapData = useMemo(() => {
+    const summary = attendanceData.reduce((acc, curr) => {
+      const employeeInfo = curr.employeeId; // Data karyawan sudah di-populate
+      if (!employeeInfo) return acc; // Lewati jika data karyawan tidak ada
+
+      if (!acc[employeeInfo._id]) {
+        acc[employeeInfo._id] = { 
+          id: employeeInfo._id,
+          employeeId: employeeInfo.employeeId,
+          nama: employeeInfo.nama,
+          jabatan: employeeInfo.jabatan || 'N/A',
+          Hadir: 0, Cuti: 0, Terlambat: 0, Total: 0 
         };
       }
-      if (acc[employeeId][curr.status] !== undefined) {
-        acc[employeeId][curr.status]++;
+      if (acc[employeeInfo._id][curr.status] !== undefined) {
+        acc[employeeInfo._id][curr.status]++;
       }
-      acc[employeeId].Total++;
+      acc[employeeInfo._id].Total++;
       return acc;
     }, {});
 
     return Object.values(summary);
-  }, [attendanceData, filter]);
+  }, [attendanceData]);
 
-  const years = [...new Set(attendanceData.map(item => new Date(item.tanggal).getFullYear()))];
+  // Buat daftar tahun secara dinamis, misal 5 tahun terakhir
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 5 }, (_, i) => currentYear - i);
 
   return (
     <div className="rekap-absensi-container">
@@ -74,29 +104,31 @@ const RekapAbsensi = ({ allAttendanceData, employeeData }) => {
               <th>Nama Karyawan</th>
               <th>Jabatan</th>
               <th>Hadir</th>
-              <th>Izin</th>
-              <th>Sakit</th>
               <th>Terlambat</th>
+              <th>Cuti</th>
               <th>Total Hari</th>
             </tr>
           </thead>
           <tbody>
-            {rekapData.length > 0 ? (
+            {isLoading ? (
+              <tr><td colSpan="7" className="no-data">Memuat data...</td></tr>
+            ) : apiError ? (
+              <tr><td colSpan="7" className="no-data error">{apiError}</td></tr>
+            ) : rekapData.length > 0 ? (
               rekapData.map((item, index) => (
                 <tr key={item.id}>
-                  <td>{`EMP-${String(item.id).padStart(3, '0')}`}</td>
+                  <td>{item.employeeId || 'N/A'}</td>
                   <td>{item.nama}</td>
                   <td>{item.jabatan}</td>
                   <td>{item.Hadir}</td>
-                  <td>{item.Izin}</td>
-                  <td>{item.Sakit}</td>
                   <td>{item.Terlambat}</td>
+                  <td>{item.Cuti}</td>
                   <td>{item.Total}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="8" className="no-data">Tidak ada data untuk periode yang dipilih.</td>
+                <td colSpan="7" className="no-data">Tidak ada data untuk periode yang dipilih.</td>
               </tr>
             )}
           </tbody>

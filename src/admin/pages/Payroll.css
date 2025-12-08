@@ -1,0 +1,192 @@
+.payroll-container {
+  padding: 2rem;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Menggunakan kembali style umum dari file lain */
+.payroll-container .page-header {
+  margin-bottom: 2rem;
+}
+
+.payroll-container .page-header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.payroll-container .page-header p {
+  color: #7f8c8d;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.payroll-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-controls {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 0; /* Hapus margin bawah default dari form-group */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #596275;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dfe4ea;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.generate-btn {
+  align-self: flex-start; /* Tombol tidak merentang penuh */
+  padding: 0.8rem 2rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.generate-btn:disabled {
+  background-color: #a9cce3;
+  cursor: not-allowed;
+}
+
+/* Gaya untuk tabel payroll */
+.table-container {
+  overflow-x: auto;
+}
+
+.payroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.payroll-table th,
+.payroll-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.payroll-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.payroll-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+}
+
+.no-data.error {
+  color: #e74c3c;
+}
+
+.status-select {
+  padding: 6px 10px;
+  border: 1px solid #dfe4ea;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.status-select:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  color: #7f8c8d;
+}
+
+/* Menggunakan kembali status badge dari file lain */
+.status-badge.status-dibayar { background-color: #d1fae5; color: #065f46; }
+.status-badge.status-diproses { background-color: #fef3c7; color: #92400e; }
+.status-badge.status-belum-dibayar { background-color: #fee2e2; color: #991b1b; }
+
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}

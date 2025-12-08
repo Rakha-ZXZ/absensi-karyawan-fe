@@ -1,0 +1,86 @@
+/* Reusing styles from AddEmployeeModal.css for consistency */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #888;
+}
+
+.info-display, .summary-display {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-item, .summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+.info-item:not(:last-child), .summary-item:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.summary-item.total {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+  font-size: 1.1rem;
+}
+
+.summary-item.total strong {
+  color: #28a745;
+}
+
+.info-item strong, .summary-item strong {
+  font-weight: 600;
+  color: #212529;
+}
+
+/* Reusing form styles from other modals */
+.modal-footer, .form-group, .form-input, .btn-cancel, .btn-save, .error-message {
+  /* Assuming these are defined in another shared CSS file */
+}

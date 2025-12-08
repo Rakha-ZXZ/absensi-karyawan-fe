@@ -10,7 +10,7 @@ const departemenEnum = [
   "Teknologi Informasi", "Human Resources", "Marketing",
   "Finance", "Operations",
 ];
-const statusEnum = ["Aktif", "Tidak Aktif", "Cuti"];
+const statusEnum = ["Aktif", "Cuti"];
 
 const AddEmployeeModal = ({ show, onClose, onSave }) => {
   const initialState = {
@@ -22,6 +22,10 @@ const AddEmployeeModal = ({ show, onClose, onSave }) => {
     nomorTelepon: '',
     alamat: '',
     status: 'Aktif', // Default value
+    gajiPokok: 0,
+    tunjanganJabatan: 0,
+    tunjanganTransport: 0,
+    tunjanganMakan: 0,
   };
 
   const [employeeData, setEmployeeData] = useState(initialState);
@@ -113,6 +117,25 @@ const AddEmployeeModal = ({ show, onClose, onSave }) => {
               <div className="form-group">
                 <label htmlFor="alamat">Alamat</label>
                 <textarea id="alamat" name="alamat" value={employeeData.alamat} onChange={handleChange} rows="3"></textarea>
+              </div>
+            </div>
+            {/* Kolom Gaji */}
+            <div className="form-column">
+              <div className="form-group">
+                <label htmlFor="gajiPokok">Gaji Pokok</label>
+                <input type="number" id="gajiPokok" name="gajiPokok" value={employeeData.gajiPokok} onChange={handleChange} min="0" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="tunjanganJabatan">Tunjangan Jabatan</label>
+                <input type="number" id="tunjanganJabatan" name="tunjanganJabatan" value={employeeData.tunjanganJabatan} onChange={handleChange} min="0" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="tunjanganTransport">Tunjangan Transport</label>
+                <input type="number" id="tunjanganTransport" name="tunjanganTransport" value={employeeData.tunjanganTransport} onChange={handleChange} min="0" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="tunjanganMakan">Tunjangan Makan</label>
+                <input type="number" id="tunjanganMakan" name="tunjanganMakan" value={employeeData.tunjanganMakan} onChange={handleChange} min="0" />
               </div>
             </div>
           </div>
