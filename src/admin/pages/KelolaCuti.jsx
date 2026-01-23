@@ -89,6 +89,35 @@ const KelolaCuti = () => {
     }
   };
 
+  const handleDelete = async (request) => {
+    const confirmMessage = request.status === "Disetujui"
+      ? `Apakah Anda yakin ingin menghapus pengajuan cuti ${request.employeeId?.nama}?\n\nPeringatan: Catatan absensi cuti yang sudah dibuat juga akan dihapus!`
+      : `Apakah Anda yakin ingin menghapus pengajuan cuti ${request.employeeId?.nama}?`;
+
+    if (!confirm(confirmMessage)) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/leave-requests/${request._id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("✅ " + data.message);
+        fetchLeaveRequests();
+      } else {
+        alert("❌ " + (data.message || "Gagal menghapus pengajuan"));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("❌ Terjadi kesalahan");
+    }
+  };
+
   const getStatusBadge = (status) => {
     const badges = {
       Pending: "badge-pending",
@@ -253,14 +282,29 @@ const KelolaCuti = () => {
                           >
                             ❌ Tolak
                           </button>
+                          <button
+                            className="btn-delete"
+                            onClick={() => handleDelete(request)}
+                          >
+                            🗑️ Hapus
+                          </button>
                         </div>
                       ) : (
-                        <div className="processed-info">
-                          <small>
-                            {request.disetujuiOleh?.nama || "Admin"}
-                            <br />
-                            {formatDate(request.tanggalDisetujui)}
-                          </small>
+                        <div className="action-buttons">
+                          <div className="processed-info">
+                            <small>
+                              {request.disetujuiOleh?.nama || "Admin"}
+                              <br />
+                              {formatDate(request.tanggalDisetujui)}
+                            </small>
+                          </div>
+                          <button
+                            className="btn-delete-small"
+                            onClick={() => handleDelete(request)}
+                            title="Hapus pengajuan cuti"
+                          >
+                            🗑️
+                          </button>
                         </div>
                       )}
                     </td>

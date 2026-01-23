@@ -262,7 +262,8 @@
 }
 
 .btn-approve,
-.btn-reject {
+.btn-reject,
+.btn-delete {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 6px;
@@ -288,6 +289,31 @@
 }
 
 .btn-reject:hover {
+  background-color: #c0392b;
+}
+
+.btn-delete {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-delete-small {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #e74c3c;
+  color: white;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.btn-delete-small:hover {
   background-color: #c0392b;
 }
 
