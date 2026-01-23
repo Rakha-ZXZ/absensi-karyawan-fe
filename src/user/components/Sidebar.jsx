@@ -16,6 +16,7 @@ const Sidebar = () => {
   const menuItems = [
     { path: '/dashboard', icon: '🏠', label: 'Dashboard' },
     { path: '/absensi', icon: '📋', label: 'Absensi' },
+    { path: '/cuti', icon: '📝', label: 'Pengajuan Cuti' },
     { path: '/gaji', icon: '💰', label: 'Gaji & Tunjangan' },
     { path: '/profile', icon: '👤', label: 'Profil' },
   ];

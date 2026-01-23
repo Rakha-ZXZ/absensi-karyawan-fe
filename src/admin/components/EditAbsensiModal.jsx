@@ -95,9 +95,7 @@ const EditAbsensiModal = ({ show, onClose, onSave, attendanceData }) => {
             <select id="status" name="status" value={formData.status} onChange={handleChange} required>
               <option value="Hadir">Hadir</option>
               <option value="Terlambat">Terlambat</option>
-              <option value="Cuti">Cuti</option>
-              <option value="Sakit">Sakit</option>
-              <option value="Izin">Izin</option>
+              <option value="Cuti">Cuti</option>           
             </select>
           </div>
           <div className="modal-footer">

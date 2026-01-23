@@ -17,6 +17,7 @@ const AdminSidebar = () => {
     { path: '/admin/dashboard', icon: '📊', label: 'Dashboard' },
     { path: '/admin/absensi', icon: '📋', label: 'Kelola Absensi' },
     { path: '/admin/rekap-absensi', icon: '📑', label: 'Rekap Absensi' },
+    { path: '/admin/cuti', icon: '📝', label: 'Kelola Cuti' },
     { path: '/admin/karyawan', icon: '👥', label: 'Kelola Karyawan' },
     { path: '/admin/penggajian', icon: '💰', label: 'Penggajian' },
     { path: '/admin/pengaturan', icon: '⚙️', label: 'Pengaturan' },

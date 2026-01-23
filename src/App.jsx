@@ -1,6 +1,7 @@
 import './App.css'; // Menambahkan ekstensi .css
 import Dashboard from './user/pages/Dashboard.jsx'; // Menambahkan ekstensi .jsx
 import Absensi from './user/pages/Absensi.jsx'; // Menambahkan ekstensi .jsx
+import Cuti from './user/pages/Cuti.jsx'; // Menambahkan ekstensi .jsx
 import Gaji from './user/pages/Gaji.jsx'; // Menambahkan ekstensi .jsx
 import Profile from './user/pages/Profile.jsx'; // Menambahkan ekstensi .jsx
 import Sidebar from './user/components/Sidebar.jsx'; // Menambahkan ekstensi .jsx
@@ -10,6 +11,7 @@ import AdminSidebar from './admin/components/AdminSidebar.jsx'; // Menambahkan e
 import AdminDashboard from './admin/pages/AdminDashboard.jsx'; // Menambahkan ekstensi .jsx
 import KelolaAbsensi from './admin/pages/KelolaAbsensi.jsx'; // Menambahkan ekstensi .jsx
 import RekapAbsensi from './admin/pages/RekapAbsensi.jsx'; // Menambahkan ekstensi .jsx
+import KelolaCuti from './admin/pages/KelolaCuti.jsx'; // Menambahkan ekstensi .jsx
 import KelolaKaryawan from './admin/pages/KelolaKaryawan.jsx'; // Menambahkan ekstensi .jsx
 import Payroll from './admin/pages/Payroll.jsx'; // Import halaman Payroll baru
 import Pengaturan from './admin/pages/Pengaturan.jsx'; // Menambahkan ekstensi .jsx
@@ -58,6 +60,7 @@ const showLayout = !pathsToHideLayout.includes(location.pathname);
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/absensi" element={<Absensi />} />
+            <Route path="/cuti" element={<Cuti />} />
             <Route path="/gaji" element={<Gaji />} />
             <Route path="/profile" element={<Profile />} />
             </Route>
@@ -74,6 +77,7 @@ const showLayout = !pathsToHideLayout.includes(location.pathname);
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />          
                 <Route path="/admin/absensi" element={<KelolaAbsensi />} />
                 <Route path="/admin/rekap-absensi" element={<RekapAbsensi />} />
+                <Route path="/admin/cuti" element={<KelolaCuti />} />
                 <Route path="/admin/karyawan" element={<KelolaKaryawan />} />
                 <Route path="/admin/penggajian" element={<Payroll />} />
                 <Route path="/admin/pengaturan" element={<Pengaturan />} />

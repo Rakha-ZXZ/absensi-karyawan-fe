@@ -187,14 +187,15 @@ const KelolaAbsensi = () => {
               <th>Jam Masuk</th>
               <th>Jam Keluar</th>
               <th>Status</th>
+              <th>Foto</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
             {isLoading ? (
-              <tr><td colSpan="7" className="no-data">Memuat data absensi...</td></tr>
+              <tr><td colSpan="8" className="no-data">Memuat data absensi...</td></tr>
             ) : apiError ? (
-              <tr><td colSpan="7" className="no-data error">{apiError}</td></tr>
+              <tr><td colSpan="8" className="no-data error">{apiError}</td></tr>
             ) : filteredData.length > 0 ? (
               filteredData.map((item) => (
                 <tr key={item._id}>
@@ -215,6 +216,19 @@ const KelolaAbsensi = () => {
                   </td>
                   <td><span className={`status-badge status-${item.status.toLowerCase()}`}>{item.status}</span></td>
                   <td>
+                    {item.fotoAbsensi ? (
+                      <img 
+                        src={`http://localhost:5000${item.fotoAbsensi}`} 
+                        alt="Foto Absensi" 
+                        className="foto-thumbnail"
+                        onClick={() => window.open(`http://localhost:5000${item.fotoAbsensi}`, '_blank')}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    ) : (
+                      <span className="no-photo">Tidak ada foto</span>
+                    )}
+                  </td>
+                  <td>
                     <button className="action-btn edit-btn" title="Edit" onClick={() => handleEditClick(item)}>✏️</button>
                     <button className="action-btn delete-btn" title="Hapus" onClick={() => handleDeleteAttendance(item._id)}>🗑️</button>
                   </td>
@@ -222,7 +236,7 @@ const KelolaAbsensi = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="no-data">Tidak ada data absensi yang cocok.</td>
+                <td colSpan="8" className="no-data">Tidak ada data absensi yang cocok.</td>
               </tr>
             )}
           </tbody>

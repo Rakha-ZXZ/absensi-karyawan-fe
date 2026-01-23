@@ -213,7 +213,7 @@ const Gaji = () => {
           <span className="icon">💡</span> Memahami Perhitungan Gaji Anda
         </h3>
         <p className="explanation-text">
-          <strong>Estimasi Gaji Terkumpul</strong> adalah proyeksi pendapatan berdasarkan total hari Anda diabsen (termasuk Hadir, Terlambat, Cuti, Sakit, dan Izin). Angka ini berguna untuk melihat progres Anda.
+          <strong>Estimasi Gaji Terkumpul</strong> adalah proyeksi pendapatan berdasarkan total hari Anda diabsen (termasuk Hadir, Terlambat, Cuti). Angka ini berguna untuk melihat progres Anda.
         </p>
         <p className="explanation-text">
           <strong>Rekap Gaji Bulanan</strong> adalah jumlah **gaji final dan tetap** yang Anda terima. Angka ini sudah mencakup pembayaran untuk seluruh hari dalam sebulan, termasuk hari kerja dan hari libur (akhir pekan & libur nasional), sesuai dengan kontrak kerja Anda.

@@ -79,17 +79,39 @@ const Absensi = () => {
           const { latitude, longitude } = position.coords;
 
           try {
+            // Gunakan FormData untuk mengirim foto
+            const formData = new FormData();
+            formData.append('latitude', latitude);
+            formData.append('longitude', longitude);
+            if (attendance.photo) {
+              formData.append('fotoAbsensi', attendance.photo);
+            }
+
             const response = await fetch(`${API_BASE_URL}api/attendance/check-in`, {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ latitude, longitude }),
+              body: formData, // Kirim FormData, bukan JSON
             });
 
+            // Cek apakah response adalah JSON
+            const contentType = response.headers.get('content-type');
+            let result;
+            
+            if (contentType && contentType.includes('application/json')) {
+              try {
+                result = await response.json();
+              } catch (parseError) {
+                // Error saat parsing JSON
+                throw new Error('Gagal memproses respons dari server. Pastikan backend berjalan dengan benar.');
+              }
+            } else {
+              // Jika bukan JSON, kemungkinan HTML error page
+              throw new Error('Server mengembalikan respons yang tidak valid. Pastikan backend berjalan dengan benar.');
+            }
+
             if (!response.ok) {
-              const result = await response.json(); // Parse error response
+              // Tampilkan pesan error dari server
               throw new Error(result.message || 'Gagal melakukan absensi.');
             }
-            const result = await response.json(); // Parse success response
 
             // Perbarui state absensi hari ini untuk memicu re-fetch riwayat
             setTodayAttendance(result.data); // Update status untuk menyembunyikan form
@@ -108,6 +130,37 @@ const Absensi = () => {
           setIsLoading(false);
         }
       );
+    } else if (attendance.type === 'cuti') {
+      // --- Integrasi API untuk Cuti ---
+      try {
+        // Gunakan FormData untuk mengirim foto
+        const formData = new FormData();
+        formData.append('keterangan', attendance.keterangan);
+        if (attendance.photo) {
+          formData.append('fotoAbsensi', attendance.photo);
+        }
+
+        const response = await fetch(`${API_BASE_URL}api/attendance/request-leave`, {
+          method: 'POST',
+          credentials: 'include',
+          body: formData, // Kirim FormData, bukan JSON
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.message || 'Gagal mencatat cuti.');
+        }
+
+        setTodayAttendance(result.data); // Update status untuk menyembunyikan form
+        setSuccessMessage(result.message);
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
   
@@ -138,11 +191,27 @@ const Absensi = () => {
             body: JSON.stringify({ latitude, longitude }),
           });
 
+          // Cek apakah response adalah JSON
+          const contentType = response.headers.get('content-type');
+          let result;
+          
+          if (contentType && contentType.includes('application/json')) {
+            try {
+              result = await response.json();
+            } catch (parseError) {
+              // Error saat parsing JSON
+              throw new Error('Gagal memproses respons dari server. Pastikan backend berjalan dengan benar.');
+            }
+          } else {
+            // Jika bukan JSON, kemungkinan HTML error page
+            throw new Error('Server mengembalikan respons yang tidak valid. Pastikan backend berjalan dengan benar.');
+          }
+
           if (!response.ok) {
-            const result = await response.json(); // Parse error response
+            // Tampilkan pesan error dari server
             throw new Error(result.message || 'Gagal melakukan check-out.');
           }
-          const result = await response.json(); // Parse success response
+
           setTodayAttendance(result.data); // Perbarui state dengan data lengkap dari server
           setSuccessMessage(result.message);
           setShowSuccess(true);
