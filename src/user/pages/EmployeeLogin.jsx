@@ -55,7 +55,7 @@ const EmployeeLogin = () => {
       <div className="login-card">
         <h1 className="login-title">Employee Login</h1>
         <p className="login-subtitle">Selamat datang kembali, silakan masuk.</p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="login-form">
           {error && <p className="error-message">{error}</p>}
           <div className="input-group">
             <label htmlFor="email">Email</label>

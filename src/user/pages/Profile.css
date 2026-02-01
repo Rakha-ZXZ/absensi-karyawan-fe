@@ -1,8 +1,8 @@
-.profile-page {
+.user-app .profile-page {
   padding: 20px;
 }
 
-.glass-card {
+.user-app .glass-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border-radius: 12px;
@@ -12,17 +12,17 @@
   padding: 25px;
 }
 
-.profile-header-card {
+.user-app .profile-header-card {
   padding: 30px;
 }
 
-.profile-identity {
+.user-app .profile-identity {
   display: flex;
   align-items: center;
   gap: 25px;
 }
 
-.profile-avatar-large {
+.user-app .profile-avatar-large {
   position: relative;
   width: 80px;
   height: 80px;
@@ -36,11 +36,11 @@
   font-weight: 600;
 }
 
-.avatar-initials {
+.user-app .avatar-initials {
   line-height: 1;
 }
 
-.avatar-status-indicator {
+.user-app .avatar-status-indicator {
   position: absolute;
   bottom: 4px;
   right: 4px;
@@ -50,41 +50,41 @@
   border: 2px solid white;
 }
 
-.avatar-status-indicator.active {
+.user-app .avatar-status-indicator.active {
   background-color: #2ecc71;
 }
 
-.profile-identity-info {
+.user-app .profile-identity-info {
   flex-grow: 1;
 }
 
-.profile-identity-info h2 {
+.user-app .profile-identity-info h2 {
   margin: 0 0 5px 0;
   font-size: 1.8rem;
   color: #111827;
 }
 
-.profile-meta {
+.user-app .profile-meta {
   margin: 0 0 10px 0;
   color: #6b7280;
   font-size: 1rem;
 }
 
-.profile-status {
+.user-app .profile-status {
   display: flex;
   align-items: center;
   gap: 15px;
   font-size: 0.9rem;
 }
 
-.nip-badge, .join-date {
+.user-app .nip-badge, .user-app .join-date {
   background-color: #f3f4f6;
   padding: 4px 10px;
   border-radius: 12px;
   color: #4b5563;
 }
 
-.btn-edit-profile {
+.user-app .btn-edit-profile {
   background-color: #6c63ff;
   color: white;
   border: none;
@@ -98,59 +98,59 @@
   gap: 8px;
 }
 
-.btn-edit-profile:hover {
+.user-app .btn-edit-profile:hover {
   background-color: #574fcf;
 }
 
-.profile-content-grid {
+.user-app .profile-content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
 }
 
-.profile-column {
+.user-app .profile-column {
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
-.section-header {
+.user-app .section-header {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.section-title {
+.user-app .section-title {
   font-size: 1.2rem;
   color: #111827;
   margin: 0;
 }
 
-.info-grid {
+.user-app .info-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 18px;
 }
 
-.info-item {
+.user-app .info-item {
   display: flex;
   flex-direction: column;
 }
 
-.info-label {
+.user-app .info-label {
   font-size: 0.85rem;
   color: #6b7280;
   margin-bottom: 6px;
 }
 
-.info-value {
+.user-app .info-value {
   font-size: 1rem;
   color: #374151;
   font-weight: 500;
 }
 
-.info-input, .info-select, .info-textarea {
+.user-app .info-input, .user-app .info-select, .user-app .info-textarea {
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #d1d5db;
@@ -158,29 +158,29 @@
   font-size: 1rem;
 }
 
-.contact-item {
+.user-app .contact-item {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.security-info {
+.user-app .security-info {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.security-item {
+.user-app .security-item {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.security-details {
+.user-app .security-details {
   flex-grow: 1;
 }
 
-.security-note {
+.user-app .security-note {
   margin-top: 20px;
   padding: 12px;
   background-color: #fffbe6;
@@ -192,7 +192,7 @@
   gap: 10px;
 }
 
-.edit-mode-actions {
+.user-app .edit-mode-actions {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -203,19 +203,19 @@
   z-index: 10;
 }
 
-.edit-actions-content {
+.user-app .edit-actions-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.edit-buttons {
+.user-app .edit-buttons {
   display: flex;
   gap: 10px;
 }
 
 /* --- Status Badge Styles --- */
-.status-badge {
+.user-app .status-badge {
   padding: 5px 12px;
   border-radius: 16px;
   font-size: 0.85rem;
@@ -224,23 +224,23 @@
   display: inline-block;
 }
 
-.status-aktif {
+.user-app .status-aktif {
   background-color: #d1fae5;
   color: #065f46;
 }
 
-.status-non-aktif {
+.user-app .status-non-aktif {
   background-color: #fee2e2;
   color: #991b1b;
 }
 
-.status-cuti {
+.user-app .status-cuti {
   background-color: #dbeafe;
   color: #1e40af;
 }
 
 /* --- Security Button Styles --- */
-.btn-security {
+.user-app .btn-security {
   background-color: #f3f4f6;
   color: #374151;
   border: 1px solid #e5e7eb;
@@ -255,11 +255,11 @@
   gap: 6px;
 }
 
-.btn-security:hover {
+.user-app .btn-security:hover {
   background-color: #e5e7eb;
   border-color: #d1d5db;
 }
 
-.btn-security .btn-icon {
+.user-app .btn-security .btn-icon {
   font-size: 0.9rem;
 }

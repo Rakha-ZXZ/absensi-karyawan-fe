@@ -1,27 +1,27 @@
-.pengaturan-container {
+.admin-app .pengaturan-container {
   padding: 2rem;
   background-color: #f4f6f9;
   min-height: 100vh; /* Menggunakan min-height agar konten tidak terpotong */
 }
 
 /* Menggunakan kembali style umum dari file lain */
-.pengaturan-container .page-header {
+.admin-app .pengaturan-container .page-header {
   margin-bottom: 2rem;
 }
 
-.pengaturan-container .page-header h1 {
+.admin-app .pengaturan-container .page-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin: 0 0 0.5rem 0;
 }
 
-.pengaturan-container .page-header p {
+.admin-app .pengaturan-container .page-header p {
   color: #7f8c8d;
   font-size: 1rem;
   margin: 0;
 }
 
-.settings-card {
+.admin-app .settings-card {
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
@@ -29,7 +29,7 @@
   margin-bottom: 2rem;
 }
 
-.settings-card .card-title {
+.admin-app .settings-card .card-title {
   font-size: 1.5rem;
   color: #34495e;
   margin-top: 0;
@@ -38,19 +38,18 @@
   border-bottom: 1px solid #ecf0f1;
 }
 
-.form-group {
+.admin-app .form-group {
   margin-bottom: 1.75rem;
 }
 
-.form-group label {
+.admin-app .form-group label {
   display: block;
   margin-bottom: 0.75rem;
   font-weight: 600;
   color: #596275;
 }
 
-.form-input,
-input[type="time"] {
+.admin-app .form-input, .admin-app input[type="time"] {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #dfe4ea;
@@ -60,14 +59,13 @@ input[type="time"] {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-input:focus,
-input[type="time"]:focus {
+.admin-app .form-input:focus, .admin-app input[type="time"]:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-.user-info-display {
+.admin-app .user-info-display {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #dfe4ea;
@@ -79,12 +77,12 @@ input[type="time"]:focus {
   font-weight: 500;
 }
 
-.submit-area {
+.admin-app .submit-area {
   margin-top: 2.5rem;
   text-align: right;
 }
 
-.save-btn {
+.admin-app .save-btn {
   padding: 0.8rem 2rem;
   background-color: #3498db;
   color: white;
@@ -96,37 +94,37 @@ input[type="time"]:focus {
   transition: background-color 0.3s;
 }
 
-.save-btn:hover {
+.admin-app .save-btn:hover {
   background-color: #2980b9;
 }
 
-.save-btn:disabled {
+.admin-app .save-btn:disabled {
   background-color: #95a5a6;
   cursor: not-allowed;
 }
 
 /* Status Message */
-.status-message {
+.admin-app .status-message {
   padding: 1rem;
   margin-bottom: 1.5rem;
   border-radius: 6px;
   font-size: 0.95rem;
 }
 
-.status-message.success {
+.admin-app .status-message.success {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.status-message.error {
+.admin-app .status-message.error {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
 /* Form Row untuk 2 kolom */
-.form-row {
+.admin-app .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -134,13 +132,13 @@ input[type="time"]:focus {
 }
 
 @media (max-width: 768px) {
-  .form-row {
+  .admin-app .form-row {
     grid-template-columns: 1fr;
   }
 }
 
 /* Section Subtitle */
-.section-subtitle {
+.admin-app .section-subtitle {
   font-size: 1.2rem;
   color: #34495e;
   margin-top: 2rem;
@@ -148,18 +146,18 @@ input[type="time"]:focus {
   font-weight: 600;
 }
 
-.section-description {
+.admin-app .section-description {
   color: #7f8c8d;
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
 }
 
 /* Location Actions */
-.location-actions {
+.admin-app .location-actions {
   margin-bottom: 1.5rem;
 }
 
-.btn-use-location {
+.admin-app .btn-use-location {
   padding: 0.75rem 1.5rem;
   background-color: #27ae60;
   color: white;
@@ -171,12 +169,12 @@ input[type="time"]:focus {
   transition: background-color 0.3s;
 }
 
-.btn-use-location:hover {
+.admin-app .btn-use-location:hover {
   background-color: #229954;
 }
 
 /* Form Hint */
-.form-hint {
+.admin-app .form-hint {
   display: block;
   margin-top: 0.5rem;
   color: #7f8c8d;
@@ -184,12 +182,11 @@ input[type="time"]:focus {
 }
 
 /* Input Number - Remove Spinner */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+.admin-app input[type="number"]::-webkit-inner-spin-button, .admin-app input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type="number"] {
+.admin-app input[type="number"] {
   -moz-appearance: textfield;
 }

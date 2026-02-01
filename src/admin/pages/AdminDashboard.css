@@ -1,11 +1,11 @@
-.grid {
+.admin-app .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 25px;
   margin-top: 20px;
 }
 
-.stat-card {
+.admin-app .stat-card {
   background: white;
   border-radius: 8px;
   padding: 25px;
@@ -14,20 +14,20 @@
   border-top: 4px solid #6c757d;
 }
 
-.stat-value {
+.admin-app .stat-value {
   font-size: 2.5rem;
   font-weight: 700;
   color: #444;
   margin: 15px 0;
 }
 
-.stat-label {
+.admin-app .stat-label {
   color: #777;
   font-size: 1rem;
   font-weight: 500;
 }
 
-.card {
+.admin-app .card {
   background: white;
   border-radius: 8px;
   padding: 25px;
@@ -35,37 +35,36 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-.card-title {
+.admin-app .card-title {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 20px;
   color: #333;
 }
 
-.table {
+.admin-app .table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
 }
 
-.table th,
-.table td {
+.admin-app .table th, .admin-app .table td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.table th {
+.admin-app .table th {
   background-color: #f9fafb;
   font-weight: 600;
   color: #374151;
 }
 
-.table tbody tr:hover {
+.admin-app .table tbody tr:hover {
   background-color: #f9fafb;
 }
 
-.status-hadir {
+.admin-app .status-hadir {
   background-color: #d1fae5;
   color: #065f46;
   padding: 4px 8px;
@@ -74,7 +73,7 @@
   font-weight: 500;
 }
 
-.status-terlambat {
+.admin-app .status-terlambat {
   background-color: #fef3c7;
   color: #92400e;
   padding: 4px 8px;
@@ -83,7 +82,7 @@
   font-weight: 500;
 }
 
-.status-cuti {
+.admin-app .status-cuti {
   background-color: #e0e7ff;
   color: #3730a3;
   padding: 4px 8px;
@@ -92,7 +91,7 @@
   font-weight: 500;
 }
 
-.btn {
+.admin-app .btn {
   display: inline-block;
   padding: 8px 16px;
   border-radius: 4px;
@@ -104,32 +103,32 @@
   transition: background-color 0.2s;
 }
 
-.btn-primary {
+.admin-app .btn-primary {
   background-color: #3b82f6;
   color: white;
 }
 
-.btn-primary:hover {
+.admin-app .btn-primary:hover {
   background-color: #2563eb;
 }
 
-.btn-secondary {
+.admin-app .btn-secondary {
   background-color: #6b7280;
   color: white;
 }
 
-.btn-secondary:hover {
+.admin-app .btn-secondary:hover {
   background-color: #4b5563;
 }
 
-.payroll-item {
+.admin-app .payroll-item {
   display: flex;
   justify-content: space-between;
   padding: 12px 0;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.payroll-total {
+.admin-app .payroll-total {
   display: flex;
   justify-content: space-between;
   padding: 15px 0;
@@ -139,7 +138,7 @@
   margin-top: 10px;
 }
 
-.page-title {
+.admin-app .page-title {
   font-size: 1.75rem;
   font-weight: 700;
   color: #1f2937;

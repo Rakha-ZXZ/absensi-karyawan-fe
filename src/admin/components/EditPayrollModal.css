@@ -1,5 +1,5 @@
 /* Reusing styles from AddEmployeeModal.css for consistency */
-.modal-overlay {
+.admin-app .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   z-index: 1000;
 }
 
-.modal-content {
+.admin-app .modal-content {
   background: white;
   padding: 2rem;
   border-radius: 8px;
@@ -21,7 +21,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.modal-header {
+.admin-app .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,13 +30,13 @@
   margin-bottom: 1.5rem;
 }
 
-.modal-header h2 {
+.admin-app .modal-header h2 {
   margin: 0;
   font-size: 1.5rem;
   color: #333;
 }
 
-.close-button {
+.admin-app .close-button {
   background: none;
   border: none;
   font-size: 2rem;
@@ -44,7 +44,7 @@
   color: #888;
 }
 
-.info-display, .summary-display {
+.admin-app .info-display, .admin-app .summary-display {
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
@@ -52,7 +52,7 @@
   margin-bottom: 1.5rem;
 }
 
-.info-item, .summary-item {
+.admin-app .info-item, .admin-app .summary-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,27 +60,27 @@
   color: #495057;
 }
 
-.info-item:not(:last-child), .summary-item:not(:last-child) {
+.admin-app .info-item:not(:last-child), .admin-app .summary-item:not(:last-child) {
   margin-bottom: 0.75rem;
 }
 
-.summary-item.total {
+.admin-app .summary-item.total {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #e9ecef;
   font-size: 1.1rem;
 }
 
-.summary-item.total strong {
+.admin-app .summary-item.total strong {
   color: #28a745;
 }
 
-.info-item strong, .summary-item strong {
+.admin-app .info-item strong, .admin-app .summary-item strong {
   font-weight: 600;
   color: #212529;
 }
 
 /* Reusing form styles from other modals */
-.modal-footer, .form-group, .form-input, .btn-cancel, .btn-save, .error-message {
+.admin-app .modal-footer, .admin-app .form-group, .admin-app .form-input, .admin-app .btn-cancel, .admin-app .btn-save, .admin-app .error-message {
   /* Assuming these are defined in another shared CSS file */
 }

@@ -1,7 +1,7 @@
 /* ==========================================================================
    Global Variables for Theming
    ========================================================================== */
-:root {
+.admin-app {
   --primary-color: #007bff;
   --primary-color-darker: #0056b3;
   --secondary-color: #6c757d;
@@ -24,7 +24,7 @@
 /* ==========================================================================
    Modal Overlay & Content
    ========================================================================== */
-.modal-overlay {
+.admin-app .modal-overlay {
   position: fixed;
   inset: 0; /* shorthand for top, right, bottom, left */
   background-color: var(--overlay-background);
@@ -35,7 +35,7 @@
   animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal-content {
+.admin-app .modal-content {
   background-color: var(--background-color);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -51,7 +51,7 @@
 /* ==========================================================================
    Modal Header, Body, Footer
    ========================================================================== */
-.modal-header {
+.admin-app .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,14 +59,14 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.modal-header h2 {
+.admin-app .modal-header h2 {
   margin: 0;
   font-size: var(--font-size-lg);
   color: var(--text-color);
   font-weight: 600;
 }
 
-.close-button {
+.admin-app .close-button {
   background: transparent;
   border: none;
   font-size: 1.75rem;
@@ -79,11 +79,11 @@
   transition: color 0.2s ease;
 }
 
-.close-button:hover {
+.admin-app .close-button:hover {
   color: var(--text-color);
 }
 
-.modal-form {
+.admin-app .modal-form {
   padding: 1.5rem;
   overflow-y: auto;
   display: flex;
@@ -91,7 +91,7 @@
   gap: 1rem;
 }
 
-.modal-footer {
+.admin-app .modal-footer {
   display: flex;
   justify-content: flex-end;
   padding: 1rem 1.5rem;
@@ -103,7 +103,7 @@
 /* ==========================================================================
    Form Elements & Messages
    ========================================================================== */
-.error-message {
+.admin-app .error-message {
   color: var(--danger-color);
   background-color: rgba(220, 53, 69, 0.1);
   border: 1px solid rgba(220, 53, 69, 0.2);
@@ -113,21 +113,19 @@
   margin: 0;
 }
 
-.form-group {
+.admin-app .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.form-group label {
+.admin-app .form-group label {
   font-weight: 500;
   color: var(--text-color-light);
   font-size: var(--font-size-sm);
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.admin-app .form-group input, .admin-app .form-group select, .admin-app .form-group textarea {
   width: 100%;
   padding: 0.6rem 0.8rem;
   border: 1px solid var(--border-color);
@@ -137,15 +135,13 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.admin-app .form-group input:focus, .admin-app .form-group select:focus, .admin-app .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
-.form-group textarea {
+.admin-app .form-group textarea {
   min-height: 80px;
   resize: vertical;
 }
@@ -153,8 +149,7 @@
 /* ==========================================================================
    Buttons
    ========================================================================== */
-.cancel-btn,
-.save-btn {
+.admin-app .cancel-btn, .admin-app .save-btn {
   padding: 0.6rem 1.25rem;
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -164,22 +159,22 @@
   border: 1px solid transparent;
 }
 
-.cancel-btn {
+.admin-app .cancel-btn {
   background-color: var(--background-color);
   color: var(--secondary-color);
   border-color: var(--border-color);
 }
 
-.cancel-btn:hover {
+.admin-app .cancel-btn:hover {
   background-color: #e2e6ea;
 }
 
-.save-btn {
+.admin-app .save-btn {
   background-color: var(--primary-color);
   color: var(--background-color);
 }
 
-.save-btn:hover {
+.admin-app .save-btn:hover {
   background-color: var(--primary-color-darker);
 }
 

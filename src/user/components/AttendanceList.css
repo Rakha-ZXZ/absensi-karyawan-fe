@@ -1,9 +1,9 @@
 /* Attendance List Styles */
-.attendance-list {
+.user-app .attendance-list {
   margin-top: 20px;
 }
 
-.no-data {
+.user-app .no-data {
   text-align: center;
   padding: 40px;
   color: #6b7280;
@@ -12,16 +12,16 @@
   border: 1px solid rgba(209, 213, 219, 0.5);
 }
 
-.text-muted {
+.user-app .text-muted {
   color: #9ca3af;
 }
 
-.time-value {
+.user-app .time-value {
   font-weight: 600;
   color: #374151;
 }
 
-.btn-sm {
+.user-app .btn-sm {
   padding: 5px 10px;
   font-size: 0.85rem;
 }

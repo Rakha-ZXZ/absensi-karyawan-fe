@@ -1,4 +1,4 @@
-:root {
+.user-app {
   --primary-color: #007bff;
   --primary-color-darker: #0056b3;
   --background-light: #f4f7f9;
@@ -11,7 +11,7 @@
   --border-radius: 8px;
 }
 
-.login-container {
+.user-app .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.login-card {
+.user-app .login-card {
   background-color: white;
   padding: 2.5rem 3rem;
   border-radius: var(--border-radius);
@@ -30,34 +30,34 @@
   text-align: center;
 }
 
-.login-title {
+.user-app .login-title {
   font-size: 2rem;
   font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 0.5rem;
 }
 
-.login-subtitle {
+.user-app .login-subtitle {
   color: var(--text-light);
   margin-bottom: 2rem;
 }
 
-.login-form {
+.user-app .login-form {
   text-align: left;
 }
 
-.input-group {
+.user-app .input-group {
   margin-bottom: 1.25rem;
 }
 
-.input-group label {
+.user-app .input-group label {
   display: block;
   font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--text-dark);
 }
 
-.input-group input {
+.user-app .input-group input {
   width: 100%;
   padding: 0.8rem 1rem;
   border: 1px solid var(--border-color);
@@ -67,13 +67,13 @@
   box-sizing: border-box;
 }
 
-.input-group input:focus {
+.user-app .input-group input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
-.login-button {
+.user-app .login-button {
   width: 100%;
   padding: 0.9rem;
   border: none;
@@ -87,16 +87,16 @@
   margin-top: 0.5rem;
 }
 
-.login-button:hover:not(:disabled) {
+.user-app .login-button:hover:not(:disabled) {
   background-color: var(--primary-color-darker);
 }
 
-.login-button:disabled {
+.user-app .login-button:disabled {
   background-color: #a0c7ff;
   cursor: not-allowed;
 }
 
-.error-banner {
+.user-app .error-banner {
   background-color: var(--error-bg);
   color: var(--error-text);
   padding: 0.8rem;

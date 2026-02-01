@@ -1,28 +1,28 @@
-.kelola-karyawan-container {
+.admin-app .kelola-karyawan-container {
   padding: 2rem;
   background-color: #f4f6f9;
   min-height: 100vh;
 }
 
 /* Header Halaman */
-.page-header {
+.admin-app .page-header {
   margin-bottom: 2rem;
 }
 
-.page-header h1 {
+.admin-app .page-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin: 0 0 0.5rem 0;
 }
 
-.page-header p {
+.admin-app .page-header p {
   color: #7f8c8d;
   font-size: 1rem;
   margin: 0;
 }
 
 /* Bilah Aksi (Pencarian dan Tombol Tambah) */
-.action-bar {
+.admin-app .action-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,7 +33,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.search-input {
+.admin-app .search-input {
   padding: 0.75rem 1rem;
   border: 1px solid #dfe4ea;
   border-radius: 6px;
@@ -42,13 +42,13 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.search-input:focus {
+.admin-app .search-input:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-.add-btn {
+.admin-app .add-btn {
   padding: 0.75rem 1.5rem;
   background-color: #2ecc71;
   color: white;
@@ -60,30 +60,30 @@
   transition: background-color 0.3s;
 }
 
-.add-btn:hover {
+.admin-app .add-btn:hover {
   background-color: #27ae60;
 }
 
 /* Kontainer Tabel */
-.table-container {
+.admin-app .table-container {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   overflow-x: auto; /* Agar tabel bisa di-scroll di layar kecil */
 }
 
-.karyawan-table {
+.admin-app .karyawan-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.karyawan-table th, .karyawan-table td {
+.admin-app .karyawan-table th, .admin-app .karyawan-table td {
   padding: 1rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid #ecf0f1;
 }
 
-.karyawan-table th {
+.admin-app .karyawan-table th {
   background-color: #f8f9fa;
   font-weight: 600;
   color: #596275;
@@ -91,18 +91,18 @@
   text-transform: uppercase;
 }
 
-.karyawan-table tbody tr:hover {
+.admin-app .karyawan-table tbody tr:hover {
   background-color: #fcfdfe;
 }
 
-.no-data {
+.admin-app .no-data {
   text-align: center;
   padding: 3rem;
   color: #95a5a6;
 }
 
 /* Tombol Aksi di dalam tabel */
-.action-btn {
+.admin-app .action-btn {
   padding: 0.4rem 0.8rem;
   border: none;
   border-radius: 5px;
@@ -112,14 +112,14 @@
   color: white;
 }
 
-.edit-btn { background-color: #f39c12; }
-.edit-btn:hover { background-color: #e67e22; }
+.admin-app .edit-btn { background-color: #f39c12; }
+.admin-app .edit-btn:hover { background-color: #e67e22; }
 
-.delete-btn { background-color: #e74c3c; }
-.delete-btn:hover { background-color: #c0392b; }
+.admin-app .delete-btn { background-color: #e74c3c; }
+.admin-app .delete-btn:hover { background-color: #c0392b; }
 
 /* Status Badge Styles */
-.status-badge {
+.admin-app .status-badge {
   display: inline-block;
   padding: 0.4rem 0.4rem;
   border-radius: 20px;
@@ -130,19 +130,19 @@
   min-width: 80px;
 }
 
-.status-aktif {
+.admin-app .status-aktif {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.status-tidak-aktif {
+.admin-app .status-tidak-aktif {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
-.status-cuti {
+.admin-app .status-cuti {
   background-color: #fff3cd;
   color: #856404;
   border: 1px solid #ffeaa7;

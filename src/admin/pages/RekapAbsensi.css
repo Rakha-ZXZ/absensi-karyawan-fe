@@ -1,25 +1,25 @@
-.rekap-absensi-container {
+.admin-app .rekap-absensi-container {
   padding: 2rem;
   background-color: #f4f6f9;
   height: 100%;
 }
 
 /* Menggunakan kembali style dari KelolaAbsensi.css */
-.rekap-absensi-container .page-header {
+.admin-app .rekap-absensi-container .page-header {
   margin-bottom: 2rem;
 }
 
-.rekap-absensi-container .page-header h1 {
+.admin-app .rekap-absensi-container .page-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin-bottom: 0.5rem;
 }
 
-.rekap-absensi-container .page-header p {
+.admin-app .rekap-absensi-container .page-header p {
   color: #7f8c8d;
 }
 
-.rekap-absensi-container .filter-bar {
+.admin-app .rekap-absensi-container .filter-bar {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
@@ -29,19 +29,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.rekap-table {
+.admin-app .rekap-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.rekap-table th,
-.rekap-table td {
+.admin-app .rekap-table th, .admin-app .rekap-table td {
   padding: 1rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid #ecf0f1;
 }
 
-.rekap-table th {
+.admin-app .rekap-table th {
   background-color: #f8f9fa;
   color: #34495e;
   font-weight: 600;
@@ -49,17 +48,17 @@
   font-size: 0.85rem;
 }
 
-.rekap-table td:first-child {
+.admin-app .rekap-table td:first-child {
   font-weight: 500;
   color: #34495e;
 }
 
-.rekap-table td:nth-child(3) {
+.admin-app .rekap-table td:nth-child(3) {
   color: #7f8c8d;
   font-size: 0.9rem;
 }
 
-.no-data {
+.admin-app .no-data {
   text-align: center !important;
   color: #7f8c8d;
   padding: 2rem !important;

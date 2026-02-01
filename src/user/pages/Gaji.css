@@ -1,11 +1,11 @@
-.payroll-item {
+.user-app .payroll-item {
   display: flex;
   justify-content: space-between;
   padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
 
-.payroll-total {
+.user-app .payroll-total {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
@@ -16,14 +16,14 @@
   margin-top: 15px;
 }
 
-.explanation-card {
+.user-app .explanation-card {
   background-color: #eef2f7; /* Warna biru muda yang lembut */
   border-left: 5px solid #3498db; /* Aksen garis biru di kiri */
   margin-top: 20px;
   padding: 20px;
 }
 
-.explanation-title {
+.user-app .explanation-title {
   display: flex;
   align-items: center;
   font-size: 1.1rem;
@@ -32,18 +32,18 @@
   margin-bottom: 15px;
 }
 
-.explanation-title .icon {
+.user-app .explanation-title .icon {
   font-size: 1.5rem;
   margin-right: 10px;
 }
 
-.explanation-text {
+.user-app .explanation-text {
   font-size: 0.95rem;
   line-height: 1.6;
   color: #34495e;
   margin-bottom: 10px;
 }
 
-.explanation-text:last-child {
+.user-app .explanation-text:last-child {
   margin-bottom: 0;
 }

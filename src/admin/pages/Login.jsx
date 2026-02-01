@@ -48,24 +48,26 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <h1 className="login-title">Admin Login</h1>
-        <p className="login-subtitle">Selamat datang kembali, silakan masuk.</p>
-        <form onSubmit={handleSubmit}>
-          {error && <p className="error-message">{error}</p>}
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="contoh@email.com" required />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Masukkan password" required />
-          </div>
-          <button type="submit" className="login-button">
-            Login
-          </button>
-        </form>
+    <div className="admin-login">
+      <div className="login-container">
+        <div className="login-card">
+          <h1 className="login-title">Admin Login</h1>
+          <p className="login-subtitle">Selamat datang kembali, silakan masuk.</p>
+          <form onSubmit={handleSubmit}>
+            {error && <p className="error-message">{error}</p>}
+            <div className="input-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="contoh@email.com" required />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Masukkan password" required />
+            </div>
+            <button type="submit" className="login-button">
+              Login
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

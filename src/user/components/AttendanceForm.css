@@ -1,17 +1,17 @@
 /* Form Styles untuk AttendanceForm */
-.attendance-form {
+.user-app .attendance-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.radio-group {
+.user-app .radio-group {
   display: flex;
   gap: 20px;
   margin-bottom: 10px;
 }
 
-.radio-label {
+.user-app .radio-label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -23,15 +23,15 @@
   border: 1px solid rgba(209, 213, 219, 0.5);
 }
 
-.radio-label:hover {
+.user-app .radio-label:hover {
   background: rgba(107, 114, 128, 0.1);
 }
 
-.radio-label input[type="radio"] {
+.user-app .radio-label input[type="radio"] {
   margin: 0;
 }
 
-.textarea-control {
+.user-app .textarea-control {
   width: 100%;
   padding: 12px 15px;
   border: 1px solid rgba(209, 213, 219, 0.6);
@@ -45,14 +45,14 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.textarea-control:focus {
+.user-app .textarea-control:focus {
   outline: none;
   border-color: #6b7280;
   box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
 }
 
 /* Camera Button Styles */
-.btn-camera {
+.user-app .btn-camera {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
@@ -68,17 +68,17 @@
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
-.btn-camera:hover {
+.user-app .btn-camera:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
 }
 
-.btn-camera:active {
+.user-app .btn-camera:active {
   transform: scale(0.95);
 }
 
 /* Photo Preview Styles */
-.photo-preview-container {
+.user-app .photo-preview-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -89,7 +89,7 @@
   border: 2px dashed rgba(209, 213, 219, 0.6);
 }
 
-.photo-preview {
+.user-app .photo-preview {
   width: 100%;
   max-width: 300px;
   border-radius: 8px;
@@ -97,7 +97,7 @@
   object-fit: cover;
 }
 
-.btn-remove-photo {
+.user-app .btn-remove-photo {
   background: #ef4444;
   color: white;
   border: none;
@@ -112,13 +112,13 @@
   gap: 6px;
 }
 
-.btn-remove-photo:hover {
+.user-app .btn-remove-photo:hover {
   background: #dc2626;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-.form-hint {
+.user-app .form-hint {
   font-size: 0.85rem;
   color: #6b7280;
   margin-top: 8px;
@@ -127,12 +127,11 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .photo-preview {
+  .user-app .photo-preview {
     max-width: 100%;
   }
   
-  .btn-camera,
-  .btn-remove-photo {
+  .user-app .btn-camera, .user-app .btn-remove-photo {
     width: 100%;
     justify-content: center;
   }

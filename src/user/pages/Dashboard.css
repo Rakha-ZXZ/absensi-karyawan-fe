@@ -1,11 +1,11 @@
-.grid {
+.user-app .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 25px;
   margin-top: 20px;
 }
 
-.stat-card {
+.user-app .stat-card {
   background: white;
   border-radius: 8px;
   padding: 25px;
@@ -14,14 +14,14 @@
   border-top: 4px solid #6c757d;
 }
 
-.stat-value {
+.user-app .stat-value {
   font-size: 2.5rem;
   font-weight: 700;
   color: #444;
   margin: 15px 0;
 }
 
-.stat-label {
+.user-app .stat-label {
   color: #777;
   font-size: 1rem;
   font-weight: 500;

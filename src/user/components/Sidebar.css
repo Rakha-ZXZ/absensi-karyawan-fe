@@ -1,4 +1,4 @@
-.admin-sidebar {
+.user-app .admin-sidebar {
   width: 250px;
   min-width: 250px; /* Mencegah sidebar menyusut */
   background-color: #2c3e50;
@@ -12,31 +12,31 @@
   height: 100vh; /* Tinggi sidebar selalu 100% dari tinggi layar */
 }
 
-.admin-sidebar-header {
+.user-app .admin-sidebar-header {
   padding: 30px 20px;
   border-bottom: 1px solid #34495e;
   text-align: center;
 }
 
-.admin-sidebar-header h2 {
+.user-app .admin-sidebar-header h2 {
   margin-bottom: 10px;
   white-space: nowrap; /* Mencegah teks turun baris saat transisi */
   font-size: 1.5rem;
   color: #ecf0f1;
 }
 
-.admin-sidebar-header p {
+.user-app .admin-sidebar-header p {
   font-size: 0.85rem;
   white-space: nowrap;
   color: #bdc3c7;
 }
 
-.admin-sidebar-menu {
+.user-app .admin-sidebar-menu {
   flex: 1;
   padding: 30px 0;
 }
 
-.admin-menu-item {
+.user-app .admin-menu-item {
   display: flex;
   align-items: center;
   padding: 15px 25px;
@@ -46,42 +46,42 @@
   border-left: 4px solid transparent;
 }
 
-.admin-menu-item:hover {
+.user-app .admin-menu-item:hover {
   background-color: #34495e;
   color: white;
   border-left: 4px solid #6c757d;
 }
 
-.admin-menu-item.active {
+.user-app .admin-menu-item.active {
   background-color: #34495e;
   color: white;
   border-left: 4px solid #6c757d;
 }
 
-.admin-menu-icon {
+.user-app .admin-menu-icon {
   font-size: 1.2rem;
   margin-right: 15px;
   width: 25px;
   text-align: center;
 }
 
-.admin-menu-label {
+.user-app .admin-menu-label {
   font-size: 1rem;
   white-space: nowrap;
   font-weight: 500;
 }
 
-.admin-sidebar-footer {
+.user-app .admin-sidebar-footer {
   padding: 20px;
   border-top: 1px solid #34495e;
 }
 
-.admin-user-info {
+.user-app .admin-user-info {
   display: flex;
   align-items: center;
 }
 
-.admin-user-avatar {
+.user-app .admin-user-avatar {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -93,23 +93,23 @@
   margin-right: 15px;
 }
 
-.admin-user-details p {
+.user-app .admin-user-details p {
   margin: 0;
   line-height: 1.4;
 }
 
-.admin-user-name {
+.user-app .admin-user-name {
   font-weight: 600;
   color: #ecf0f1;
 }
 
-.admin-user-role {
+.user-app .admin-user-role {
   font-size: 0.85rem;
   color: #bdc3c7;
 }
 
 /* Tombol Logout di Footer */
-.logout-btn {
+.user-app .logout-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,50 +125,47 @@
 
 /* Tablet (Sidebar diciutkan) */
 @media (max-width: 992px) {
-  .admin-sidebar {
+  .user-app .admin-sidebar {
     width: 80px;
     min-width: 80px;
   }
 
-  .admin-sidebar-header {
+  .user-app .admin-sidebar-header {
     padding: 20px 10px;
   }
 
-  .admin-sidebar-header h2 {
+  .user-app .admin-sidebar-header h2 {
     font-size: 1.2rem; /* Kecilkan judul */
   }
 
   /* Sembunyikan teks, hanya tampilkan ikon */
-  .admin-sidebar-header h2,
-  .admin-sidebar-header p,
-  .admin-menu-label,
-  .admin-user-details {
+  .user-app .admin-sidebar-header h2, .user-app .admin-sidebar-header p, .user-app .admin-menu-label, .user-app .admin-user-details {
     display: none;
   }
 
-  .admin-menu-item {
+  .user-app .admin-menu-item {
     justify-content: center; /* Pusatkan ikon */
     padding: 15px 10px;
   }
 
-  .admin-menu-icon {
+  .user-app .admin-menu-icon {
     margin-right: 0; /* Hapus margin ikon */
     font-size: 1.4rem;
   }
 
-  .admin-user-info {
+  .user-app .admin-user-info {
     justify-content: center; /* Pusatkan avatar */
   }
 
-  .admin-user-avatar {
+  .user-app .admin-user-avatar {
     margin-right: 0; /* Hapus margin dari avatar */
   }
 
   /* Style tombol logout menjadi ikon saja */
-  .logout-btn .admin-menu-label {
+  .user-app .logout-btn .admin-menu-label {
     display: none;
   }
-  .logout-btn .admin-menu-icon {
+  .user-app .logout-btn .admin-menu-icon {
     margin-right: 0;
     font-size: 1.4rem;
   }
@@ -176,7 +173,7 @@
 
 /* Mobile (Sidebar disembunyikan) */
 @media (max-width: 767px) {
-  .admin-sidebar {
+  .user-app .admin-sidebar {
     display: none; /* Sembunyikan sidebar sepenuhnya */
   }
 }

@@ -1,4 +1,4 @@
-.header {
+.user-app .header {
   background-color: white;
   padding: 20px 30px;
   display: flex;
@@ -8,23 +8,23 @@
   border-bottom: 1px solid #eee;
 }
 
-.header h1 {
+.user-app .header h1 {
   color: #444;
   font-size: 1.6rem;
   font-weight: 600;
 }
 
-.date-time {
+.user-app .date-time {
   text-align: right;
 }
 
-.date {
+.user-app .date {
   font-size: 1rem;
   color: #666;
   margin-bottom: 5px;
 }
 
-.time {
+.user-app .time {
   font-size: 1.3rem;
   font-weight: 600;
   color: #6c757d;

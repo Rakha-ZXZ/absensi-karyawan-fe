@@ -35,10 +35,11 @@ function AppContent() {
   const location = useLocation();
 
   const pathsToHideLayout = ['/admin/login', '/login', '/404'];
-const showLayout = !pathsToHideLayout.includes(location.pathname);
+  const showLayout = !pathsToHideLayout.includes(location.pathname);
+  const isAdminPath = location.pathname.startsWith('/admin');
 
   // Cek apakah ini route admin yang BUKAN login
-  const isAdminRoute = location.pathname.startsWith('/admin') && showLayout;
+  const isAdminRoute = isAdminPath && showLayout;
 
   // Jika masih memuat status otentikasi, tampilkan loading screen. 
   // Catatan: Loader sudah ada di AdminRoute, tapi ini untuk route yang tidak dilindungi.
@@ -47,7 +48,7 @@ const showLayout = !pathsToHideLayout.includes(location.pathname);
   // }
 
   return (
-    <div className="app">
+    <div className={`app ${isAdminPath ? 'admin-app' : 'user-app'}`}>
       {/* Tampilkan sidebar Admin atau User berdasarkan peran/route saat ini */}
       {showLayout && (isAdminRoute ? <AdminSidebar /> : <Sidebar />)}
       <div className={`main-content ${showLayout ? (isAdminRoute ? 'with-admin-sidebar' : 'with-user-sidebar') : ''}`}>

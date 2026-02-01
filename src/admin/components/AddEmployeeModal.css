@@ -1,4 +1,4 @@
-.modal-overlay {
+.admin-app .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@
   to { opacity: 1; }
 }
 
-.modal-content {
+.admin-app .modal-content {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -36,7 +36,7 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
-.modal-header {
+.admin-app .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,13 +44,13 @@
   border-bottom: 1px solid #e9ecef;
 }
 
-.modal-header h2 {
+.admin-app .modal-header h2 {
   margin: 0;
   font-size: 1.25rem;
   color: #343a40;
 }
 
-.close-button {
+.admin-app .close-button {
   background: none;
   border: none;
   font-size: 1.75rem;
@@ -60,44 +60,42 @@
   line-height: 1;
 }
 
-.modal-body {
+.admin-app .modal-body {
   padding: 20px 25px;
   overflow-y: auto; /* 6. Buat area form bisa di-scroll secara independen */
   flex-grow: 1; /* 7. Biarkan area form mengisi ruang yang tersedia */
 }
 
-.form-grid {
+.admin-app .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px; /* Sedikit tambah gap horizontal agar tidak terlalu sempit */
 }
 
-.form-column {
+.admin-app .form-column {
   display: flex;
   flex-direction: column;
   gap: 12px; /* Kurangi jarak vertikal antar form-group */
 }
 
-.form-group {
+.admin-app .form-group {
   display: flex;
   flex-direction: column;
 }
 
-.form-group label {
+.admin-app .form-group label {
   margin-bottom: 5px;
   font-weight: 600;
   color: #495057;
   font-size: 0.9rem;
 }
 
-.form-group .required {
+.admin-app .form-group .required {
   color: #e74c3c;
   margin-left: 2px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.admin-app .form-group input, .admin-app .form-group select, .admin-app .form-group textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ced4da;
@@ -105,7 +103,7 @@
   font-size: 1rem;
 }
 
-.modal-footer {
+.admin-app .modal-footer {
   display: flex;
   justify-content: flex-end;
   padding: 15px 25px;
@@ -113,7 +111,7 @@
   gap: 10px;
 }
 
-.btn-cancel {
+.admin-app .btn-cancel {
   padding: 10px 20px;
   border: 1px solid #6c757d;
   background-color: white;
@@ -122,7 +120,7 @@
   cursor: pointer;
 }
 
-.btn-save {
+.admin-app .btn-save {
   padding: 10px 20px;
   border: none;
   background-color: #007bff;

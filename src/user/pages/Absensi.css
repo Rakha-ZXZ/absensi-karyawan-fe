@@ -1,5 +1,5 @@
 /* Status Badges for Table */
-.status-hadir {
+.user-app .status-hadir {
   background-color: #d4edda;
   color: #155724;
   padding: 5px 10px;
@@ -7,7 +7,7 @@
   font-size: 0.85rem;
 }
 
-.status-terlambat {
+.user-app .status-terlambat {
   background-color: #fff3cd;
   color: #856404;
   padding: 5px 10px;
@@ -15,7 +15,7 @@
   font-size: 0.85rem;
 }
 
-.status-cuti {
+.user-app .status-cuti {
   background-color: #d1ecf1;
   color: #0c5460;
   padding: 5px 10px;
@@ -25,7 +25,7 @@
 
 
 /* Attendance Summary Styles */
-.attendance-summary {
+.user-app .attendance-summary {
   margin-bottom: 20px;
   padding: 15px;
   background: rgba(249, 250, 251, 0.7);
@@ -33,14 +33,14 @@
   border: 1px solid rgba(209, 213, 219, 0.5);
 }
 
-.summary-stats {
+.user-app .summary-stats {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-.stat-item {
+.user-app .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,20 +51,20 @@
   min-width: 120px;
 }
 
-.stat-item .stat-label {
+.user-app .stat-item .stat-label {
   font-size: 0.85rem;
   color: #6b7280;
   margin-bottom: 5px;
 }
 
-.stat-item .stat-value {
+.user-app .stat-item .stat-value {
   font-size: 1.5rem;
   font-weight: 700;
   color: #111827;
 }
 
 /* Style untuk error lokasi */
-.alert-location-error {
+.user-app .alert-location-error {
   background-color: #f8d7da;
   color: #721c24;
   padding: 15px;
@@ -78,7 +78,7 @@
 }
 
 /* Style untuk tombol checkout */
-.btn-checkout {
+.user-app .btn-checkout {
   display: block;
   width: 100%;
   padding: 12px;
@@ -93,17 +93,17 @@
   transition: background-color 0.2s ease-in-out, transform 0.1s ease;
 }
 
-.btn-checkout:hover:not(:disabled) {
+.user-app .btn-checkout:hover:not(:disabled) {
   background-color: #d97706; /* Oranye lebih gelap saat hover */
 }
 
-.btn-checkout:disabled {
+.user-app .btn-checkout:disabled {
   background-color: #fcd34d; /* Warna lebih terang saat nonaktif */
   cursor: not-allowed;
 }
 
 /* Modal Styles */
-.modal-overlay {
+.user-app .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -117,7 +117,7 @@
   backdrop-filter: blur(4px);
 }
 
-.modal-content {
+.user-app .modal-content {
   background: white;
   padding: 25px 30px;
   border-radius: 12px;
@@ -127,7 +127,7 @@
   text-align: center;
 }
 
-.modal-title {
+.user-app .modal-title {
   font-size: 1.25rem;
   font-weight: 600;
   color: #111827;
@@ -135,19 +135,19 @@
   margin-bottom: 10px;
 }
 
-.modal-text {
+.user-app .modal-text {
   font-size: 1rem;
   color: #4b5563;
   margin-bottom: 25px;
 }
 
-.modal-actions {
+.user-app .modal-actions {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-.modal-actions .btn {
+.user-app .modal-actions .btn {
   flex: 1;
   padding: 10px 20px;
   border-radius: 8px;
@@ -156,12 +156,12 @@
   cursor: pointer;
 }
 
-.modal-actions .btn-secondary {
+.user-app .modal-actions .btn-secondary {
   background-color: #e5e7eb;
   color: #374151;
 }
 
-.modal-actions .btn-danger {
+.user-app .modal-actions .btn-danger {
   background-color: #ef4444;
   color: white;
 }

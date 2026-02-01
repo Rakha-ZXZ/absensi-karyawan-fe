@@ -1,31 +1,31 @@
-.cuti-container {
+.user-app .cuti-container {
   padding: 2rem;
   background-color: #f4f6f9;
   min-height: 100vh;
 }
 
-.page-header {
+.user-app .page-header {
   margin-bottom: 2rem;
 }
 
-.page-header h1 {
+.user-app .page-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin: 0 0 0.5rem 0;
 }
 
-.page-header p {
+.user-app .page-header p {
   color: #7f8c8d;
   font-size: 1rem;
   margin: 0;
 }
 
 /* Actions */
-.cuti-actions {
+.user-app .cuti-actions {
   margin-bottom: 2rem;
 }
 
-.btn {
+.user-app .btn {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 6px;
@@ -35,53 +35,53 @@
   transition: all 0.3s;
 }
 
-.btn-primary {
+.user-app .btn-primary {
   background-color: #3498db;
   color: white;
 }
 
-.btn-primary:hover {
+.user-app .btn-primary:hover {
   background-color: #2980b9;
 }
 
-.btn-primary:disabled {
+.user-app .btn-primary:disabled {
   background-color: #95a5a6;
   cursor: not-allowed;
 }
 
-.btn-secondary {
+.user-app .btn-secondary {
   background-color: #95a5a6;
   color: white;
 }
 
-.btn-secondary:hover {
+.user-app .btn-secondary:hover {
   background-color: #7f8c8d;
 }
 
-.btn-danger-sm {
+.user-app .btn-danger-sm {
   padding: 0.5rem 1rem;
   background-color: #e74c3c;
   color: white;
   font-size: 0.9rem;
 }
 
-.btn-danger-sm:hover {
+.user-app .btn-danger-sm:hover {
   background-color: #c0392b;
 }
 
-.btn-remove {
+.user-app .btn-remove {
   padding: 0.5rem 1rem;
   background-color: #e74c3c;
   color: white;
   margin-top: 0.5rem;
 }
 
-.btn-remove:hover {
+.user-app .btn-remove:hover {
   background-color: #c0392b;
 }
 
 /* Form Card */
-.cuti-form-card {
+.user-app .cuti-form-card {
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -89,7 +89,7 @@
   margin-bottom: 2rem;
 }
 
-.cuti-form-card h2 {
+.user-app .cuti-form-card h2 {
   font-size: 1.5rem;
   color: #34495e;
   margin-top: 0;
@@ -98,7 +98,7 @@
   border-bottom: 2px solid #ecf0f1;
 }
 
-.form-row {
+.user-app .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -106,24 +106,23 @@
 }
 
 @media (max-width: 768px) {
-  .form-row {
+  .user-app .form-row {
     grid-template-columns: 1fr;
   }
 }
 
-.form-group {
+.user-app .form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.user-app .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #2c3e50;
 }
 
-.form-input,
-.form-textarea {
+.user-app .form-input, .user-app .form-textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #dfe4ea;
@@ -133,19 +132,18 @@
   transition: border-color 0.3s;
 }
 
-.form-input:focus,
-.form-textarea:focus {
+.user-app .form-input:focus, .user-app .form-textarea:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-.form-textarea {
+.user-app .form-textarea {
   resize: vertical;
   font-family: inherit;
 }
 
-.form-hint {
+.user-app .form-hint {
   display: block;
   margin-top: 0.5rem;
   color: #7f8c8d;
@@ -153,15 +151,15 @@
 }
 
 /* File Upload */
-.file-upload-wrapper {
+.user-app .file-upload-wrapper {
   margin-top: 0.5rem;
 }
 
-.file-input {
+.user-app .file-input {
   display: none;
 }
 
-.file-label {
+.user-app .file-label {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: #3498db;
@@ -172,15 +170,15 @@
   font-weight: 600;
 }
 
-.file-label:hover {
+.user-app .file-label:hover {
   background-color: #2980b9;
 }
 
-.photo-preview-container {
+.user-app .photo-preview-container {
   margin-top: 1rem;
 }
 
-.photo-preview {
+.user-app .photo-preview {
   max-width: 300px;
   max-height: 300px;
   border-radius: 8px;
@@ -189,7 +187,7 @@
 }
 
 /* Info Box */
-.info-box {
+.user-app .info-box {
   background-color: #e8f4f8;
   border-left: 4px solid #3498db;
   padding: 1rem;
@@ -200,17 +198,17 @@
   gap: 0.75rem;
 }
 
-.info-icon {
+.user-app .info-icon {
   font-size: 1.5rem;
 }
 
-.info-box p {
+.user-app .info-box p {
   margin: 0;
   color: #2c3e50;
 }
 
 /* Form Actions */
-.form-actions {
+.user-app .form-actions {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
@@ -220,14 +218,14 @@
 }
 
 /* List Card */
-.cuti-list-card {
+.user-app .cuti-list-card {
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.cuti-list-card h2 {
+.user-app .cuti-list-card h2 {
   font-size: 1.5rem;
   color: #34495e;
   margin-top: 0;
@@ -236,36 +234,36 @@
   border-bottom: 2px solid #ecf0f1;
 }
 
-.empty-state {
+.user-app .empty-state {
   text-align: center;
   padding: 3rem 1rem;
   color: #7f8c8d;
 }
 
-.empty-state p {
+.user-app .empty-state p {
   font-size: 1.1rem;
   margin: 0;
 }
 
 /* Cuti List */
-.cuti-list {
+.user-app .cuti-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.cuti-item {
+.user-app .cuti-item {
   border: 1px solid #ecf0f1;
   border-radius: 8px;
   padding: 1.5rem;
   transition: box-shadow 0.3s;
 }
 
-.cuti-item:hover {
+.user-app .cuti-item:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.cuti-item-header {
+.user-app .cuti-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -274,24 +272,24 @@
   border-bottom: 1px solid #ecf0f1;
 }
 
-.cuti-dates {
+.user-app .cuti-dates {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-.date-label {
+.user-app .date-label {
   font-weight: 600;
   color: #7f8c8d;
 }
 
-.date-value {
+.user-app .date-value {
   color: #2c3e50;
   font-weight: 500;
 }
 
-.days-badge {
+.user-app .days-badge {
   background-color: #3498db;
   color: white;
   padding: 0.25rem 0.75rem;
@@ -301,7 +299,7 @@
 }
 
 /* Status Badge */
-.status-badge {
+.user-app .status-badge {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -309,80 +307,80 @@
   text-transform: uppercase;
 }
 
-.badge-pending {
+.user-app .badge-pending {
   background-color: #fff3cd;
   color: #856404;
   border: 1px solid #ffeaa7;
 }
 
-.badge-approved {
+.user-app .badge-approved {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.badge-rejected {
+.user-app .badge-rejected {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
 
 /* Cuti Item Body */
-.cuti-item-body {
+.user-app .cuti-item-body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.cuti-detail {
+.user-app .cuti-detail {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.cuti-detail strong {
+.user-app .cuti-detail strong {
   color: #2c3e50;
   font-size: 0.95rem;
 }
 
-.cuti-detail p {
+.user-app .cuti-detail p {
   margin: 0;
   color: #596275;
   line-height: 1.6;
 }
 
-.admin-note {
+.user-app .admin-note {
   background-color: #f8f9fa;
   padding: 1rem;
   border-radius: 6px;
   border-left: 3px solid #3498db;
 }
 
-.link-view-photo {
+.user-app .link-view-photo {
   color: #3498db;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
 }
 
-.link-view-photo:hover {
+.user-app .link-view-photo:hover {
   color: #2980b9;
   text-decoration: underline;
 }
 
-.cuti-meta {
+.user-app .cuti-meta {
   margin-top: 0.5rem;
   padding-top: 0.5rem;
   border-top: 1px solid #ecf0f1;
 }
 
-.cuti-meta small {
+.user-app .cuti-meta small {
   color: #7f8c8d;
   font-size: 0.85rem;
 }
 
 /* Cuti Item Actions */
-.cuti-item-actions {
+.user-app .cuti-item-actions {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #ecf0f1;
@@ -392,27 +390,27 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .cuti-container {
+  .user-app .cuti-container {
     padding: 1rem;
   }
 
-  .cuti-item-header {
+  .user-app .cuti-item-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
 
-  .cuti-dates {
+  .user-app .cuti-dates {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  .form-actions {
+  .user-app .form-actions {
     flex-direction: column;
   }
 
-  .btn {
+  .user-app .btn {
     width: 100%;
   }
 }

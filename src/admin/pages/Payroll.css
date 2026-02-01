@@ -1,27 +1,27 @@
-.payroll-container {
+.admin-app .payroll-container {
   padding: 2rem;
   background-color: #f4f6f9;
   min-height: 100vh;
 }
 
 /* Menggunakan kembali style umum dari file lain */
-.payroll-container .page-header {
+.admin-app .payroll-container .page-header {
   margin-bottom: 2rem;
 }
 
-.payroll-container .page-header h1 {
+.admin-app .payroll-container .page-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin: 0 0 0.5rem 0;
 }
 
-.payroll-container .page-header p {
+.admin-app .payroll-container .page-header p {
   color: #7f8c8d;
   font-size: 1rem;
   margin: 0;
 }
 
-.card {
+.admin-app .card {
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
@@ -29,7 +29,7 @@
   margin-bottom: 2rem;
 }
 
-.card-title {
+.admin-app .card-title {
   font-size: 1.5rem;
   color: #34495e;
   margin-top: 0;
@@ -38,31 +38,31 @@
   border-bottom: 1px solid #ecf0f1;
 }
 
-.payroll-form {
+.admin-app .payroll-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.form-controls {
+.admin-app .form-controls {
   display: flex;
   gap: 1.5rem;
   align-items: flex-end;
 }
 
-.form-group {
+.admin-app .form-group {
   flex: 1;
   margin-bottom: 0; /* Hapus margin bawah default dari form-group */
 }
 
-.form-group label {
+.admin-app .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #596275;
 }
 
-.form-input {
+.admin-app .form-input {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid #dfe4ea;
@@ -72,13 +72,13 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-input:focus {
+.admin-app .form-input:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-.generate-btn {
+.admin-app .generate-btn {
   align-self: flex-start; /* Tombol tidak merentang penuh */
   padding: 0.8rem 2rem;
   background-color: #3498db;
@@ -91,55 +91,54 @@
   transition: background-color 0.3s;
 }
 
-.generate-btn:hover:not(:disabled) {
+.admin-app .generate-btn:hover:not(:disabled) {
   background-color: #2980b9;
 }
 
-.generate-btn:disabled {
+.admin-app .generate-btn:disabled {
   background-color: #a9cce3;
   cursor: not-allowed;
 }
 
 /* Gaya untuk tabel payroll */
-.table-container {
+.admin-app .table-container {
   overflow-x: auto;
 }
 
-.payroll-table {
+.admin-app .payroll-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1.5rem;
 }
 
-.payroll-table th,
-.payroll-table td {
+.admin-app .payroll-table th, .admin-app .payroll-table td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
   vertical-align: middle;
 }
 
-.payroll-table th {
+.admin-app .payroll-table th {
   background-color: #f9fafb;
   font-weight: 600;
   color: #374151;
 }
 
-.payroll-table tbody tr:hover {
+.admin-app .payroll-table tbody tr:hover {
   background-color: #f9fafb;
 }
 
-.no-data {
+.admin-app .no-data {
   text-align: center;
   padding: 2rem;
   color: #7f8c8d;
 }
 
-.no-data.error {
+.admin-app .no-data.error {
   color: #e74c3c;
 }
 
-.status-select {
+.admin-app .status-select {
   padding: 6px 10px;
   border: 1px solid #dfe4ea;
   border-radius: 6px;
@@ -147,23 +146,23 @@
   cursor: pointer;
 }
 
-.status-select:disabled {
+.admin-app .status-select:disabled {
   background-color: #f8f9fa;
   cursor: not-allowed;
   color: #7f8c8d;
 }
 
 /* Menggunakan kembali status badge dari file lain */
-.status-badge.status-dibayar { background-color: #d1fae5; color: #065f46; }
-.status-badge.status-diproses { background-color: #fef3c7; color: #92400e; }
-.status-badge.status-belum-dibayar { background-color: #fee2e2; color: #991b1b; }
+.admin-app .status-badge.status-dibayar { background-color: #d1fae5; color: #065f46; }
+.admin-app .status-badge.status-diproses { background-color: #fef3c7; color: #92400e; }
+.admin-app .status-badge.status-belum-dibayar { background-color: #fee2e2; color: #991b1b; }
 
-.action-cell {
+.admin-app .action-cell {
   display: flex;
   gap: 8px;
 }
 
-.action-btn {
+.admin-app .action-btn {
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
@@ -173,20 +172,20 @@
   transition: background-color 0.2s;
 }
 
-.edit-btn {
+.admin-app .edit-btn {
   background-color: #ffc107;
   color: #212529;
 }
 
-.edit-btn:hover {
+.admin-app .edit-btn:hover {
   background-color: #e0a800;
 }
 
-.delete-btn {
+.admin-app .delete-btn {
   background-color: #dc3545;
   color: white;
 }
 
-.delete-btn:hover {
+.admin-app .delete-btn:hover {
   background-color: #c82333;
 }
