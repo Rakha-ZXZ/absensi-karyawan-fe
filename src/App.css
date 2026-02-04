@@ -28,7 +28,7 @@ body {
 
 /* Mendorong konten utama ke kanan saat sidebar user aktif */
 .main-content.with-user-sidebar {
-  margin-left: 260px; /* Asumsi lebar sidebar user sama dengan admin */
+  margin-left: 0; /* Sidebar user masih dalam flow (sticky), jadi tidak perlu offset */
 }
 
 .content {

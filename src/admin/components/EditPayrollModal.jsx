@@ -7,12 +7,20 @@ const EditPayrollModal = ({ show, onClose, onSave, payrollData }) => {
     statusPembayaran: 'Belum Dibayar',
   });
   const [error, setError] = useState('');
+  const currencyFields = new Set(['potonganLain']);
+
+  const formatNumberInput = (value) => {
+    if (value === null || value === undefined) return '';
+    const digits = String(value).replace(/\D/g, '');
+    if (!digits) return '';
+    return new Intl.NumberFormat('id-ID').format(Number(digits));
+  };
 
   // Populate form when payrollData prop changes
   useEffect(() => {
     if (payrollData) {
       setFormData({
-        potonganLain: payrollData.potonganLain || 0,
+        potonganLain: payrollData.potonganLain ? String(payrollData.potonganLain) : '',
         statusPembayaran: payrollData.statusPembayaran || 'Belum Dibayar',
       });
     }
@@ -24,6 +32,11 @@ const EditPayrollModal = ({ show, onClose, onSave, payrollData }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (currencyFields.has(name)) {
+      const digitsOnly = value.replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, [name]: digitsOnly }));
+      return;
+    }
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -32,7 +45,11 @@ const EditPayrollModal = ({ show, onClose, onSave, payrollData }) => {
     setError('');
     // The onSave function will handle the API call.
     // We pass the payroll ID and the updated form data.
-    onSave(payrollData._id, formData);
+    const payload = {
+      ...formData,
+      potonganLain: Number(formData.potonganLain) || 0,
+    };
+    onSave(payrollData._id, payload);
   };
 
   const formatCurrency = (value) => {
@@ -65,13 +82,14 @@ const EditPayrollModal = ({ show, onClose, onSave, payrollData }) => {
           <div className="form-group">
             <label htmlFor="potonganLain">Potongan Manual (Kasbon, dll)</label>
             <input
-              type="number"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
               id="potonganLain"
               name="potonganLain"
               className="form-input"
-              value={formData.potonganLain}
+              value={formatNumberInput(formData.potonganLain)}
               onChange={handleChange}
-              min="0"
             />
           </div>
 

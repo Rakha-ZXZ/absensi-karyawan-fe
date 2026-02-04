@@ -17,6 +17,12 @@ const Payroll = () => {
   const [isListLoading, setIsListLoading] = useState(true);
   const [listError, setListError] = useState(null);
 
+  // State untuk daftar karyawan
+  const [employees, setEmployees] = useState([]);
+  const [isEmployeesLoading, setIsEmployeesLoading] = useState(true);
+  const [employeesError, setEmployeesError] = useState(null);
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState('');
+
   // State untuk modal edit
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingPayroll, setEditingPayroll] = useState(null);
@@ -32,6 +38,29 @@ const Payroll = () => {
 
   // Membuat array tahun, misal dari 2 tahun lalu hingga tahun sekarang
   const years = Array.from({ length: 3 }, (_, i) => currentYear - i);
+
+  // Fungsi untuk mengambil data karyawan
+  const fetchEmployees = async () => {
+    setIsEmployeesLoading(true);
+    setEmployeesError(null);
+    try {
+      const response = await fetch(`${API_BASE_URL}api/admin/get-employees`, {
+        credentials: 'include',
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Gagal mengambil data karyawan.');
+      }
+      const data = await response.json();
+      const filtered = data.filter(emp => ['Aktif', 'Cuti'].includes(emp.status));
+      const sorted = [...filtered].sort((a, b) => a.nama.localeCompare(b.nama, 'id-ID'));
+      setEmployees(sorted);
+    } catch (error) {
+      setEmployeesError(error.message);
+    } finally {
+      setIsEmployeesLoading(false);
+    }
+  };
 
   // Fungsi untuk mengambil data payroll
   const fetchPayrolls = async () => {
@@ -58,10 +87,22 @@ const Payroll = () => {
     fetchPayrolls();
   }, [selectedMonth, selectedYear]); // Ambil data setiap kali filter berubah
 
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
   const handleGeneratePayroll = async (e) => {
     e.preventDefault();
+
+    if (!selectedEmployeeId) {
+      setStatusMessage({ text: 'Pilih karyawan terlebih dahulu.', type: 'error' });
+      return;
+    }
+
+    const selectedEmployee = employees.find(emp => emp._id === selectedEmployeeId);
+    const selectedName = selectedEmployee?.nama || 'karyawan';
     
-    if (!window.confirm(`Anda akan membuat/memperbarui data gaji untuk ${months.find(m => m.value === selectedMonth).name} ${selectedYear}. Lanjutkan?`)) {
+    if (!window.confirm(`Anda akan membuat/memperbarui data gaji untuk ${selectedName} periode ${months.find(m => m.value === selectedMonth).name} ${selectedYear}. Lanjutkan?`)) {
       return;
     }
 
@@ -69,7 +110,7 @@ const Payroll = () => {
     setStatusMessage({ text: '', type: '' });
 
     try {
-      const response = await fetch(`${API_BASE_URL}api/payroll/generate?month=${selectedMonth}&year=${selectedYear}`, {
+      const response = await fetch(`${API_BASE_URL}api/payroll/generate?month=${selectedMonth}&year=${selectedYear}&employeeId=${selectedEmployeeId}`, {
         method: 'POST',
         credentials: 'include',
       });
@@ -176,13 +217,34 @@ const Payroll = () => {
 
       <div className="page-header">
         <h1>Generate Gaji Bulanan</h1>
-        <p>Pilih periode bulan dan tahun untuk memulai proses perhitungan gaji otomatis untuk semua karyawan aktif.</p>
+        <p>Pilih periode bulan, tahun, dan karyawan untuk memulai proses perhitungan gaji.</p>
       </div>
 
       <div className="card">
-        <h2 className="card-title">Pilih Periode Penggajian</h2>
+        <h2 className="card-title">Pilih Periode & Karyawan</h2>
         <form onSubmit={handleGeneratePayroll} className="payroll-form">
           <div className="form-controls">
+            <div className="form-group">
+              <label htmlFor="employee-select">Karyawan</label>
+              <select
+                id="employee-select"
+                value={selectedEmployeeId}
+                onChange={(e) => setSelectedEmployeeId(e.target.value)}
+                className="form-input"
+                disabled={isEmployeesLoading || !!employeesError}
+              >
+                {isEmployeesLoading ? (
+                  <option value="">Memuat daftar karyawan...</option>
+                ) : (
+                  <option value="">Pilih Karyawan</option>
+                )}
+                {!isEmployeesLoading && employees.map(emp => (
+                  <option key={emp._id} value={emp._id}>
+                    {emp.nama} ({emp.employeeId || 'N/A'})
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="form-group">
               <label htmlFor="month-select">Bulan</label>
               <select 
@@ -210,7 +272,16 @@ const Payroll = () => {
               </select>
             </div>
           </div>
-          <button type="submit" className="btn-primary generate-btn" disabled={isLoading}>
+          {employeesError && (
+            <div className="status-message error">
+              {employeesError}
+            </div>
+          )}
+          <button
+            type="submit"
+            className="btn-primary generate-btn"
+            disabled={isLoading || !selectedEmployeeId || isEmployeesLoading || !!employeesError}
+          >
             {isLoading ? 'Memproses...' : 'Generate Gaji'}
           </button>
         </form>

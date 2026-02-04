@@ -16,6 +16,7 @@ const Absensi = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [attendanceHistory, setAttendanceHistory] = useState([]);
   const [isHistoryLoading, setIsHistoryLoading] = useState(true);
+  const [filterMonth, setFilterMonth] = useState('');
 
   useEffect(() => {
     const checkStatus = async () => {
@@ -60,6 +61,19 @@ const Absensi = () => {
     };
     fetchHistory();
   }, [todayAttendance]); // Muat ulang riwayat saat ada check-in/check-out baru
+
+  const filteredHistory = attendanceHistory.filter((item) => {
+    if (!filterMonth) return true;
+    const itemDateObj = new Date(item.tanggal);
+    const year = itemDateObj.getFullYear();
+    const month = String(itemDateObj.getMonth() + 1).padStart(2, '0');
+    const itemMonth = `${year}-${month}`;
+    return itemMonth === filterMonth;
+  });
+
+  const formattedFilterMonth = filterMonth
+    ? new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(new Date(`${filterMonth}-01`))
+    : 'Semua bulan';
 
   const handleAttendanceSubmit = async (attendance) => {
     setError('');
@@ -284,24 +298,35 @@ const Absensi = () => {
       
       <div className="card">
         <h2 className="card-title">Riwayat Absensi</h2>
+        <div className="attendance-filter">
+          <label className="filter-label" htmlFor="filterMonth">Filter Bulan</label>
+          <input
+            id="filterMonth"
+            type="month"
+            className="filter-input"
+            value={filterMonth}
+            onChange={(e) => setFilterMonth(e.target.value)}
+          />
+          <span className="filter-helper">Menampilkan: {formattedFilterMonth}</span>
+        </div>
         <div className="attendance-summary">
           <div className="summary-stats">
             <div className="stat-item">
               <span className="stat-label">Total Hari Kerja:</span>
-              <span className="stat-value">{attendanceHistory.length}</span>
+              <span className="stat-value">{filteredHistory.length}</span>
             </div>
             <div className="stat-item">
               <span className="stat-label">Tepat Waktu:</span>
-              <span className="stat-value">{attendanceHistory.filter(a => a.status === 'Hadir').length}</span>
+              <span className="stat-value">{filteredHistory.filter(a => a.status === 'Hadir').length}</span>
             </div>
             <div className="stat-item">
               <span className="stat-label">Terlambat:</span>
-              <span className="stat-value">{attendanceHistory.filter(a => a.status === 'Terlambat').length}</span>
+              <span className="stat-value">{filteredHistory.filter(a => a.status === 'Terlambat').length}</span>
             </div>
           </div>
         </div>
         <AttendanceList 
-          attendanceData={attendanceHistory} 
+          attendanceData={filteredHistory} 
           isLoading={isHistoryLoading}
         />
       </div>

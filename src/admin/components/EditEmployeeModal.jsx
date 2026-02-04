@@ -26,6 +26,19 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
   });
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
+  const currencyFields = new Set([
+    'gajiPokok',
+    'tunjanganJabatan',
+    'tunjanganTransport',
+    'tunjanganMakan',
+  ]);
+
+  const formatNumberInput = (value) => {
+    if (value === null || value === undefined) return '';
+    const digits = String(value).replace(/\D/g, '');
+    if (!digits) return '';
+    return new Intl.NumberFormat('id-ID').format(Number(digits));
+  };
 
   // useEffect untuk mengisi form dengan data karyawan saat modal dibuka
   useEffect(() => {
@@ -38,10 +51,10 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
         nomorTelepon: employeeData.nomorTelepon || '',
         alamat: employeeData.alamat || '',
         status: employeeData.status || 'Aktif',
-        gajiPokok: employeeData.gajiPokok || 0,
-        tunjanganJabatan: employeeData.tunjanganJabatan || 0,
-        tunjanganTransport: employeeData.tunjanganTransport || 0,
-        tunjanganMakan: employeeData.tunjanganMakan || 0,
+        gajiPokok: employeeData.gajiPokok ? String(employeeData.gajiPokok) : '',
+        tunjanganJabatan: employeeData.tunjanganJabatan ? String(employeeData.tunjanganJabatan) : '',
+        tunjanganTransport: employeeData.tunjanganTransport ? String(employeeData.tunjanganTransport) : '',
+        tunjanganMakan: employeeData.tunjanganMakan ? String(employeeData.tunjanganMakan) : '',
       });
       setPassword(''); // Selalu kosongkan field password saat modal dibuka
     }
@@ -53,6 +66,11 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (currencyFields.has(name)) {
+      const digitsOnly = value.replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, [name]: digitsOnly }));
+      return;
+    }
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -138,19 +156,51 @@ const EditEmployeeModal = ({ show, onClose, onSave, employeeData }) => {
             <div className="form-column">
               <div className="form-group">
                 <label htmlFor="gajiPokok">Gaji Pokok</label>
-                <input type="number" id="gajiPokok" name="gajiPokok" value={formData.gajiPokok} onChange={handleChange} min="0" />
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  id="gajiPokok"
+                  name="gajiPokok"
+                  value={formatNumberInput(formData.gajiPokok)}
+                  onChange={handleChange}
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="tunjanganJabatan">Tunjangan Jabatan</label>
-                <input type="number" id="tunjanganJabatan" name="tunjanganJabatan" value={formData.tunjanganJabatan} onChange={handleChange} min="0" />
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  id="tunjanganJabatan"
+                  name="tunjanganJabatan"
+                  value={formatNumberInput(formData.tunjanganJabatan)}
+                  onChange={handleChange}
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="tunjanganTransport">Tunjangan Transport</label>
-                <input type="number" id="tunjanganTransport" name="tunjanganTransport" value={formData.tunjanganTransport} onChange={handleChange} min="0" />
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  id="tunjanganTransport"
+                  name="tunjanganTransport"
+                  value={formatNumberInput(formData.tunjanganTransport)}
+                  onChange={handleChange}
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="tunjanganMakan">Tunjangan Makan</label>
-                <input type="number" id="tunjanganMakan" name="tunjanganMakan" value={formData.tunjanganMakan} onChange={handleChange} min="0" />
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  id="tunjanganMakan"
+                  name="tunjanganMakan"
+                  value={formatNumberInput(formData.tunjanganMakan)}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </div>

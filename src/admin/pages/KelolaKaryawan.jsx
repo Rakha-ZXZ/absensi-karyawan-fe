@@ -12,6 +12,7 @@ const KelolaKaryawan = () => {
   const [apiError, setApiError] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterMonth, setFilterMonth] = useState('');
   // State untuk mengontrol visibilitas modal
   const [showAddModal, setShowAddModal] = useState(false);
   // State untuk menangani pesan status (opsional: notifikasi)
@@ -60,7 +61,18 @@ const KelolaKaryawan = () => {
       employee.jabatan.toLowerCase().includes(term) ||
       employeeId.includes(term)
     );
+  }).filter(employee => {
+    if (!filterMonth) return true;
+    if (!employee.tanggalMasuk) return false;
+    const joinDate = new Date(employee.tanggalMasuk);
+    const year = joinDate.getFullYear();
+    const month = String(joinDate.getMonth() + 1).padStart(2, '0');
+    return `${year}-${month}` === filterMonth;
   });
+
+  const formattedFilterMonth = filterMonth
+    ? new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(new Date(`${filterMonth}-01`))
+    : 'Semua bulan';
 
   // Fungsi untuk menangani penyimpanan data karyawan baru
   const handleSaveEmployee = async (newEmployeeData) => {
@@ -199,13 +211,28 @@ const KelolaKaryawan = () => {
       </div>
 
       <div className="action-bar">
-        <input
-          type="text"
-          placeholder="Cari berdasarkan nama, jabatan, atau ID..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="search-input"
-        />
+        <div className="filter-field">
+          <label className="filter-label" htmlFor="search-karyawan">Cari</label>
+          <input
+            id="search-karyawan"
+            type="text"
+            placeholder="Nama, jabatan, atau ID..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search-input"
+          />
+        </div>
+        <div className="filter-field">
+          <label className="filter-label" htmlFor="filter-join-month">Filter Bulan Bergabung</label>
+          <input
+            id="filter-join-month"
+            type="month"
+            value={filterMonth}
+            onChange={(e) => setFilterMonth(e.target.value)}
+            className="search-input"
+          />
+          <span className="filter-helper">Menampilkan: {formattedFilterMonth}</span>
+        </div>
         <button className="add-btn" onClick={() => setShowAddModal(true)}>
           + Tambah Karyawan
         </button>

@@ -26,6 +26,21 @@
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.admin-app .filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 220px;
+}
+
+.admin-app .filter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b5563;
 }
 
 .admin-app .filter-input {
@@ -34,6 +49,15 @@
   border-radius: 6px;
   font-size: 1rem;
   flex-grow: 1;
+}
+
+.admin-app .filter-helper {
+  font-size: 0.8rem;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 999px;
+  align-self: flex-start;
 }
 
 .admin-app .filter-input:focus {
@@ -156,4 +180,48 @@
   background-color: #f8d7da;
   color: #721c24;
   border-color: #f5c6cb;
+}
+
+/* Photo preview modal */
+.admin-app .photo-preview-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1.5rem;
+}
+
+.admin-app .photo-preview-dialog {
+  background-color: #fff;
+  border-radius: 10px;
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.admin-app .photo-preview-close {
+  border: none;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.admin-app .photo-preview-close:hover {
+  background-color: #c0392b;
+}
+
+.admin-app .photo-preview-image {
+  display: block;
+  max-width: 85vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
 }

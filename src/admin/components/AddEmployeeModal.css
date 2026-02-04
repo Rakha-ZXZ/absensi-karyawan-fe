@@ -73,9 +73,7 @@
 }
 
 .admin-app .form-column {
-  display: flex;
-  flex-direction: column;
-  gap: 12px; /* Kurangi jarak vertikal antar form-group */
+  display: contents;
 }
 
 .admin-app .form-group {

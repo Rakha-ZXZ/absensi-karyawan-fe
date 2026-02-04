@@ -16,10 +16,15 @@ const KelolaAbsensi = () => {
   const [editingAttendance, setEditingAttendance] = useState(null);
   const [statusMessage, setStatusMessage] = useState('');
 
+  // State untuk preview foto
+  const [isPhotoPreviewOpen, setIsPhotoPreviewOpen] = useState(false);
+  const [previewPhotoUrl, setPreviewPhotoUrl] = useState('');
+
   // State untuk filter
   const [filter, setFilter] = useState({
     search: '',
     tanggal: '',
+    bulan: '',
   });
 
   // Fungsi untuk mengambil data dari API
@@ -61,6 +66,18 @@ const KelolaAbsensi = () => {
   const handleCloseModal = () => {
     setIsEditModalOpen(false);
     setEditingAttendance(null);
+  };
+
+  // Fungsi untuk membuka preview foto
+  const handleOpenPhotoPreview = (photoUrl) => {
+    setPreviewPhotoUrl(photoUrl);
+    setIsPhotoPreviewOpen(true);
+  };
+
+  // Fungsi untuk menutup preview foto
+  const handleClosePhotoPreview = () => {
+    setIsPhotoPreviewOpen(false);
+    setPreviewPhotoUrl('');
   };
 
   // Fungsi untuk menyimpan perubahan dari modal
@@ -136,15 +153,22 @@ const KelolaAbsensi = () => {
     const month = String(itemDateObj.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
     const day = String(itemDateObj.getDate()).padStart(2, '0');
     const itemDate = `${year}-${month}-${day}`;
+    const itemMonth = `${year}-${month}`;
 
     return (
       (searchTerm === '' || 
        employeeName.includes(searchTerm) || 
        employeeId.includes(searchTerm)) &&
       // Jika filter tanggal kosong, tampilkan semua. Jika tidak, bandingkan.
-      (filter.tanggal === '' || itemDate === filter.tanggal)
+      (filter.tanggal === '' || itemDate === filter.tanggal) &&
+      // Jika filter bulan kosong, tampilkan semua. Jika tidak, bandingkan.
+      (filter.bulan === '' || itemMonth === filter.bulan)
     );
   });
+
+  const formattedFilterMonth = filter.bulan
+    ? new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(new Date(`${filter.bulan}-01`))
+    : '';
 
   return (
     <div className="kelola-absensi-container">
@@ -168,6 +192,20 @@ const KelolaAbsensi = () => {
           onChange={handleFilterChange}
           className="filter-input"
         />
+        <div className="filter-field">
+          <label className="filter-label" htmlFor="filter-bulan">Filter Bulan</label>
+          <input
+            id="filter-bulan"
+            type="month"
+            name="bulan"
+            value={filter.bulan}
+            onChange={handleFilterChange}
+            className="filter-input"
+          />
+          {formattedFilterMonth && (
+            <span className="filter-helper">Menampilkan: {formattedFilterMonth}</span>
+          )}
+        </div>
         <input
           type="date"
           name="tanggal"
@@ -221,7 +259,7 @@ const KelolaAbsensi = () => {
                         src={`http://localhost:5000${item.fotoAbsensi}`} 
                         alt="Foto Absensi" 
                         className="foto-thumbnail"
-                        onClick={() => window.open(`http://localhost:5000${item.fotoAbsensi}`, '_blank')}
+                        onClick={() => handleOpenPhotoPreview(`http://localhost:5000${item.fotoAbsensi}`)}
                         style={{ cursor: 'pointer' }}
                       />
                     ) : (
@@ -249,6 +287,17 @@ const KelolaAbsensi = () => {
         onSave={handleUpdateAttendance}
         attendanceData={editingAttendance}
       />
+
+      {isPhotoPreviewOpen && (
+        <div className="photo-preview-overlay" onClick={handleClosePhotoPreview}>
+          <div className="photo-preview-dialog" onClick={(e) => e.stopPropagation()}>
+            <button className="photo-preview-close" type="button" onClick={handleClosePhotoPreview}>
+              Tutup
+            </button>
+            <img src={previewPhotoUrl} alt="Preview Foto Absensi" className="photo-preview-image" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
